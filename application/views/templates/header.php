@@ -19,5 +19,6 @@
   <a href="http://localhost/Library/CodeIgniter_2.1.2/index.php"><button class="btn btn-primary" type="button">Main Page</button></a>
   <a href="http://localhost/Library/CodeIgniter_2.1.2/index.php/news"><button class="btn" type="button">News Page</button> </a>
   <a href="http://localhost/Library/CodeIgniter_2.1.2/index.php/news/create"><button class="btn btn-success" type="button">Create News</button></a>
+  <a href="http://localhost/Library/CodeIgniter_2.1.2/index.php/about"><button class="btn btn-warning" type="button">Info About Us</button></a>
 </p>
 
