@@ -39,9 +39,14 @@
 */
 
 $route['news/create'] = 'news/create';
+$route['admin'] = 'admin';
+$route['reader'] = 'reader';
 $route['news/(:any)'] = 'news/view/$1';
 $route['news'] = 'news';
-$route['(:any)'] = 'pages/view/$1';
+$route['about']='pages/view';
+$route['home']='pages/view';
+
+//$route['(:any)'] = 'pages/view/$1';
 $route['default_controller'] = 'pages/view';
 //$route['default_controller'] = "welcome";
 //$route['404_override'] = '';

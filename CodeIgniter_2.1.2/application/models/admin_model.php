@@ -9,7 +9,15 @@ class admin_model extends CI_Model {
 	{
 		$this->load->database();
 	}
-	public function login()
+	public function CheckLogin()
+	{
+		$this->db->get('lib_manager');
+		$this->db->where("Mname","Mpass",$AdminName,$AdminPassword);
+		
+		
+		
+	}
+	public function AdminSelect()
 	{
 		
 	}

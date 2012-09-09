@@ -12,5 +12,5 @@
 <label for="text">Text(拖动右下角来改变大小)</label>
 <textarea name="text"></textarea><br/>
 
-<input class="btn btn-success" type=submit name="submit" value="Create news item"/>
+<input class="btn btn-success" type=submit name="AdminLogin" value="Create news item"/>
 </form>

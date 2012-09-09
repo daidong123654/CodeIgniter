@@ -1,7 +1,8 @@
 html, body, #wrap {height: 100%;margin:0 3% 0 3%}
+
 body > #wrap {height: auto; min-height: 100%;}
-#main {padding-bottom: 150px;}  /* 必须使用和footer相同的高度 */
-#footer {position: relative;	margin-top: -150px; /* footer高度的负值 */
+#main {padding-bottom: 150px;}  /* 锟斤拷锟斤拷使锟矫猴拷footer锟斤拷同锟侥高讹拷 */
+#footer {position: relative;	margin-top: -150px; /* footer锟竭度的革拷值 */
 	height: 150px;	clear:both;}
 .clearfix:after {content: ".";	display: block;	height: 0;
 	clear: both;visibility: hidden;}

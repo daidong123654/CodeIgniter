@@ -2,6 +2,7 @@
 <?php foreach ($news as $news_item): ?>
 	<div class="span7">
               <h2><?php echo $news_item['title'] ?></h2>
+              <?php echo "&nbsp&nbsp&nbsp&nbsp&nbsp&nbspTime:".$news_item['newsdate'] ?>
               <p><strong><?php echo "&nbsp&nbsp&nbsp&nbsp".$news_item['text'] ?></strong></p>
               <p><a class="btn" href="http://localhost/Library/CodeIgniter_2.1.2/index.php/news/<?php echo $news_item['slug'] ?>">View details &raquo;</a></p>			  
     </div><!--/span-->
