@@ -224,6 +224,7 @@
  	     	
  	     	$params = $this->uri->uri_to_assoc();
  	     	
+ 	     	//如果id被提交而且还是有效的则开始执行下面的。param代表现在要操作的id
  	     	if(isset($params['id']) && ($id = $params['id']) > 0)
  	     	{
  	     		if($params['id'] == $this->session->userdata('id'))

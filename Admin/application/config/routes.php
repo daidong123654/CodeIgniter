@@ -40,6 +40,7 @@
 
 $route['news/create'] = 'news/create';
 $route['admin'] = 'admin';
+//$route['Frameset/index'] = 'Frameset/index';
 $route['reader'] = 'reader';
 $route['news/(:any)'] = 'news/view/$1';
 $route['news'] = 'news';

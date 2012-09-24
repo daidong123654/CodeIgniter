@@ -34,7 +34,7 @@
    *@param string $message
    *@param  string $goto
    */
-   function show_message1($message,$goto)
+   function show_message2($message,$goto)
    {
    	header("Expires:Mon,26 Jul 1997 05:00:00 GMT");
   	header("Cache-Control: no-cache, must-revalidate");
