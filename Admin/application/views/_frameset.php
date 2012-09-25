@@ -12,12 +12,19 @@
 <head>
 <meta content="text/html; charset=utf8"; http-equiv="Content-Type"/> 
 <title>HIT-LIBM管理中心</title>
-<script type="text/javascript" language="javascript">
-
-if(window.top != window)
+<style type="text/css">
+#admin{	height:28px;right:10px;	position:absolute;
+	top:5px;width:200px;z-index:100;float:left;
+	font:bold 13px Arial, Helvetica,sans-serif;
+	//background:red;}
+#admin  a{color:#15428b;padding:2px;text-decoration:none;font:normal 12px Arial, Helvetica,sans-serif;}
+</style>
+<script type="Text/Javascript" language="JavaScript">
+if (window.top != window)
 {
-	window.top.location.href = document.location.href;
+  window.top.location.href = document.location.href;
 }
+</script>
 
 </script>
 </head>
@@ -33,10 +40,16 @@ if(window.top != window)
 
 <body style="background:#abc7ec;">
 
-
-<div style="margin-top:-15px;background:#abc7ec;width:100%;float:left;">
+<div style="margin-top:-25px;background:#abc7ec;width:100%;float:left;">
 	<iframe scrolling="no" frameborder='0' height="40px" width="100%" name="header-frame"   src="<?php echo site_url('frameset/top') ?>"></iframe>
 </div>
+
+<div id="admin">
+ <a href="http://localhost/Library/Reader/">前台&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+ <?php echo $this->session->userdata('name');?>
+ &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo site_url('login/logout')?>">退出</a>
+</div>
+
 <div style="margin-top:15px;">
 
 	<iframe scrolling="no" frameborder='1' height="90%" width="15%" name="header-frame"   src="<?php echo site_url('frameset/menu/books') ?>"></iframe>

@@ -48,10 +48,11 @@ $(document).ready(function() {
 	right:10px;
 	position:absolute;
 	top:5px;
-	width:180px;
+	width:200px;
 	z-index:100;
 	float:left;
 	font:bold 13px Arial, Helvetica,sans-serif;
+	//background:red;
 }
 #admin  a{color:#15428b;padding:2px;text-decoration:none;font:normal 12px Arial, Helvetica,sans-serif;}
 </style>
@@ -69,8 +70,6 @@ $(document).ready(function() {
 	<li><a href="<?php echo site_url('system')?>" target="main-frame" onclick="changeMenu('<?php echo site_url('frameset/menu/system');?>')">系统管理</a></li>
 	</ul>
 </div>
-<div id="admin">&nbsp;&nbsp;<a target="_blank" href="<?php echo front_url();?>">前台<a/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $this->session->userdata('name');?>&nbsp;&nbsp;&nbsp;&nbsp;<a target="_top" href="<?php echo site_url('logout')?>">退出<a/></div>
-
 
 </body>
 <html>

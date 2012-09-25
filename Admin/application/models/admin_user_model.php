@@ -8,7 +8,7 @@
  * 管理员
  */
  
- class Admin_user_model extends Model
+ class Admin_user_model extends CI_Model
  {
  	var $name;
  	var $email;
@@ -16,7 +16,8 @@
  	
  	function __construct()
  	{
- 		parent::Model();
+ 		parent::__construct();
+ 		$this->load->database();
  	}
  	
  	//----------------------------------------------------------------------------------------
@@ -25,7 +26,7 @@
  	 * 
  	 * 
  	 */
- 	 function load()
+ 	 function load($mID)
  	 {
  	 	if($mID)
  	 	{
@@ -164,7 +165,7 @@
  	      	if($row = $query->row_array())
  	      	{
  	      		//角色这里的id和manager中的PowerLevel是一个
- 	      		$query1 = $this->db->get_where('lib_role',array('id'=>$row[PowerLevel]));
+ 	      		$query1 = $this->db->get_where('lib_role',array('id'=>$row['PowerLevel']));
  	      		//将该角色的所有操作放在row1中
  	      		$row1 = $query1->row_array();
  	      		if(!empty($row1))

@@ -15,6 +15,7 @@
 |
 */
 $config['base_url']	= 'http://localhost/Library/Admin/';
+//$config['front_url'] = 'http://localhost/Library/Reader/';
 
 /*
 |--------------------------------------------------------------------------
