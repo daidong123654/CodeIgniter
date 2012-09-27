@@ -7,7 +7,7 @@
  * 
  * 管理员
  */
- 
+ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
  class Admin_user_model extends CI_Model
  {
  	var $name;
@@ -28,12 +28,13 @@
  	 */
  	 function load($mID)
  	 {
- 	 	if($mID)
+ 	 	if(!$mID)
  	 	{
+ 	 		//echo "model 33";
  	 		return array();	
  	 	}
  	 	
- 	 	$query = $this->db->get_where('lib_manager',array('id'=>$mID));
+ 	 	$query = $this->db->get_where('lib_manager',array('mID'=>$mID));
  	 	
  	 	if($row = $query->row_array())
  	 	{
@@ -75,17 +76,21 @@
  	   	 foreach($query->result_array() as $row)
  	   	 {
  	   	 	//角色
- 	   	 	$query1 = $this->db->get_where('role',array('mID'=>$row['mID']));
+ 	   	 	//print_r($row);
+ 	   	 	$query1 = $this->db->get_where('lib_role',array('id'=>$row['PowerLevel']));
  	   	 	$row1 = $query1->row_array();
  	   	 	if(!empty($row1))
  	   	 	{
  	   	 		$row['role_name'] = $row1['name'];
+ 	   	 		//echo $row1['name'];
  	   	 	}
  	   	 	else
  	   	 	{
  	   	 		$row['role_name'] = '';
  	   	 	}
- 	   	 	$rows[$row['id']] = $row;
+ 	   	 	//echo $row['role_name'].":".$row['Mname']; 	   	 	
+ 	   	 	//echo $row['mID'];
+ 	   	 	$rows[$row['mID']] = $row;
  	   	 }
  	   	 return $rows; 	   	    		
  	   }
@@ -205,25 +210,4 @@
  	      
  }
 ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

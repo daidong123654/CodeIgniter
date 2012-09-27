@@ -116,9 +116,7 @@ $(document).ready(function() {
 </div>
 <body  class=" x-border-layout-ct" style="position: relative;" >
 <div id="login">
-
-  <div class="theme">
- 
+  <div class="theme"> 
     <form class="form-horizontal" action="<?php echo site_url('login/signin')?>" method="post">
 	<div class="control-group"> 	
 		<label class="control-label" for="adminname">Admin Name：</label>
@@ -141,10 +139,14 @@ $(document).ready(function() {
 	</div>
 	<input type="hidden" name="act" value="signin" />
 	</form>	
+	<div class="error-msg">用户名或者密码错误</div>
+  </div>
 </div>
 
 </body>
 </html>
+
+
 <!--
 <form class="form-horizontal" action="<?php echo site_url('login/signin')?>" method="post">
 	<div class="control-group"> 	

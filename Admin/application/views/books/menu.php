@@ -12,30 +12,34 @@
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
 <link href="<?php echo base_url()?>css/menu.css" rel="stylesheet" type="text/css" />
 <link href="<?php echo base_url()?>css/general.css" rel="stylesheet" type="text/css" />
+
 <script language="javascript" type="text/javascript" src="<?php echo base_url()?>js/jquery.js"></script>
 <script language="javascript" type="text/javascript" src="<?php echo base_url()?>js/menu.js"></script>
+
 </head>
 
 <body  class=" x-border-layout-ct" style="position: relative;">
+
+<!--<button class="btn btn-danger"><i class="icon-glass"></i></button>-->
 
 <div id="menu" class="x-panel x-border-panel x-tree " style="width: 225px; position: absolute; visibility: visible; left:5px; z-index:1; height:100% ">
 
   <div id="menu-head" class="x-panel-header">
     <a href="#" class="toggleMenu"><div  class="x-tool x-tool-toggle x-tool-collapse-west" > </div></a>
-    <span class="" >商品</span>
+    <span class="" >书  籍</span>
   </div>
 
   <div  class="x-panel-bwrap ">
-
+	<!--TOOL-->
 	<div id="cmm-func" class="x-panel-tbar">
 	<div  class="x-toolbar">
 	  <table cellspacing="0">
 	  <tr>
 	      <td class="x-btn x-btn-text-icon">
 			<table  cellspacing="0" cellpadding="0" border="0" style="width: auto;"><tbody><tr>
-			<td class="x-btn-left"><i> </i></td>
+			<td class="x-btn-left"></td>
 			<td class="x-btn-center">
-			<em ><button  class="x-btn-text add-feed" type="button" onclick="parent.document.getElementById('main-frame').src='<?php echo site_url('product/add');?>'">添加商品</button></em>
+			<em ><a  href="<?php echo site_url('books/add')?>" target="main-frame" ><button  class="x-btn-text add-feed" type="button" onclick="parent.document.getElementById('main-frame').src='<?php echo site_url('books/add');?>'">添加书籍</button></a></em>
 			</td>
 			<td class="x-btn-right"><i> </i></td>
 			</tr></tbody></table>
@@ -50,19 +54,24 @@
 	<div class="x-tree-root-node">
     <li class="x-tree-node">
 	
-	  <!-- 商品管理 -->
+	  <!-- 图书管理 -->
 	  <div  class="x-tree-node-el  feeds-node" >
 		  <img  class="x-tree-ec-icon x-tree-elbow-end-minus" src="<?php echo base_url()?>images/s.gif" title="关闭">
 		  <img class="x-tree-node-icon"  src="<?php echo base_url()?>images/s.gif"/>
-		  <span >商品管理</span>
+		  <span >图书管理</span>
 	  </div>
      
 	  <ul  style="" class="x-tree-node-ct">
-	  <li class="x-tree-node"><div  class="x-tree-node-el x-tree-node-leaf feed x-tree-selected " ><span class="x-tree-node-indent"><img class="x-tree-icon" src="<?php echo base_url()?>images/s.gif"/></span><img  class="x-tree-node-icon feed-icon" src="<?php echo base_url()?>images/s.gif"/><a href="<?php echo site_url('product')?>" target="main-frame"><span >商品列表</span></a></div></li>
+	  <li class="x-tree-node"><div  class="x-tree-node-el x-tree-node-leaf feed x-tree-selected " ><span class="x-tree-node-indent"><img class="x-tree-icon" src="<?php echo base_url()?>images/s.gif"/></span><img  class="x-tree-node-icon feed-icon" src="<?php echo base_url()?>images/s.gif"/><a href="<?php echo site_url('books')?>" target="main-frame"><span >图书列表</span></a></div></li>
 
-	  <li class="x-tree-node"><div  class="x-tree-node-el x-tree-node-leaf feed" ><span class="x-tree-node-indent"><img class="x-tree-icon" src="<?php echo base_url()?>images/s.gif"/></span><img  class="x-tree-node-icon add-feed" src="<?php echo base_url()?>images/s.gif"/><a  href="<?php echo site_url('product/add')?>" target="main-frame" ><span >添加商品</span></a></div></li>
-     
-	  <li class="x-tree-node"><div  class="x-tree-node-el x-tree-node-leaf feed" ><span class="x-tree-node-indent"><img class="x-tree-icon" src="<?php echo base_url()?>images/s.gif"/></span><img  class="x-tree-node-icon feed-icon" src="<?php echo base_url()?>images/s.gif"/><a  href="<?php echo site_url('product/recycle')?>" target="main-frame" ><span >回收站</span></a></div></li>      
+	  <li class="x-tree-node"><div  class="x-tree-node-el x-tree-node-leaf feed" ><span class="x-tree-node-indent"><img class="x-tree-icon" src="<?php echo base_url()?>images/s.gif"/></span><img  class="x-tree-node-icon add-feed" src="<?php echo base_url()?>images/s.gif"/><a  href="<?php echo site_url('books/add')?>" target="main-frame" ><span >添加图书</span></a></div></li>
+	  
+	  <li class="x-tree-node"><div  class="x-tree-node-el x-tree-node-leaf feed" ><span class="x-tree-node-indent"><img class="x-tree-icon" src="<?php echo base_url()?>images/s.gif"/></span><img  class="x-tree-node-icon feed-icon" src="<?php echo base_url()?>images/rss_search2.png"/><a href="<?php echo site_url('books/search')?>" target="main-frame"><span >查找图书</span></a></div></li>
+	  
+	  <!--
+	  <li class="x-tree-node"><div  class="x-tree-node-el x-tree-node-leaf feed" ><span class="x-tree-node-indent"><img class="x-tree-icon" src="<?php //echo base_url()?>images/s.gif"/></span><img  class="x-tree-node-icon add-feed" src="<?php //echo base_url()?>images/s.gif"/><a  href="<?php //echo site_url('books/add')?>" target="main-frame" ><span >删除图书</span></a></div></li>
+     -->
+	  <li class="x-tree-node"><div  class="x-tree-node-el x-tree-node-leaf feed" ><span class="x-tree-node-indent"><img class="x-tree-icon" src="<?php echo base_url()?>images/s.gif"/></span><img  class="x-tree-node-icon feed-icon" src="<?php echo base_url()?>images/rss-icon.gif"/><a  href="<?php echo site_url('books/recycle')?>" target="main-frame" ><span >回收站</span></a></div></li>      
 	  </ul>
 
 	  <!-- 分类管理 -->
@@ -77,45 +86,14 @@
 
 	  <li class="x-tree-node"><div  class="x-tree-node-el x-tree-node-leaf  feed"  ><span class="x-tree-node-indent"><img class="x-tree-icon" src="<?php echo base_url()?>images/s.gif"/></span><img  class="x-tree-node-icon add-feed" src="<?php echo base_url()?>images/s.gif"/><a  href="<?php echo site_url('category/add')?>" target="main-frame" ><span >添加分类</span></a></div></li>
 	  </ul>
-
-	  <!-- 商品属性 -->
-	  <div  class="x-tree-node-el  feeds-node" >
-		  <img  class="x-tree-ec-icon x-tree-elbow-end-minus" src="<?php echo base_url()?>images/s.gif" title="关闭">
-		  <img class="x-tree-node-icon"  src="<?php echo base_url()?>images/s.gif"/>
-		  <span >商品属性</span>
-	  </div>
-     
-	  <ul style="display:" class="x-tree-node-ct">
-	  <li class="x-tree-node"><div  class="x-tree-node-el x-tree-node-leaf  feed" ><span class="x-tree-node-indent"><img class="x-tree-icon" src="<?php echo base_url()?>images/s.gif"/></span><img  class="x-tree-node-icon feed-icon" src="<?php echo base_url()?>images/s.gif"/><a href="<?php echo site_url('attribute_set')?>" target="main-frame" style=""><span >属性分组列表</span></a></div></li>
-
-	  <li class="x-tree-node"><div  class="x-tree-node-el x-tree-node-leaf  feed"  ><span class="x-tree-node-indent"><img class="x-tree-icon" src="<?php echo base_url()?>images/s.gif"/></span><img  class="x-tree-node-icon add-feed" src="<?php echo base_url()?>images/s.gif"/><a  href="<?php echo site_url('attribute_set/add')?>" target="main-frame" ><span >添加属性分组</span></a></div></li>
-
-      <li class="x-tree-node"><div  class="x-tree-node-el x-tree-node-leaf  feed" ><span class="x-tree-node-indent"><img class="x-tree-icon" src="<?php echo base_url()?>images/s.gif"/></span><img  class="x-tree-node-icon feed-icon"  src="<?php echo base_url()?>images/s.gif"/><a href="<?php echo site_url('attribute')?>" target="main-frame" style=""><span >属性列表</span></a></div></li>
-
-	  <li class="x-tree-node"><div  class="x-tree-node-el x-tree-node-leaf  feed"  ><span class="x-tree-node-indent"><img class="x-tree-icon" src="<?php echo base_url()?>images/s.gif"/></span><img  class="x-tree-node-icon add-feed" src="<?php echo base_url()?>images/s.gif"/><a  href="<?php echo site_url('attribute/add')?>" target="main-frame" ><span >添加属性</span></a></div></li>
-	  </ul>
-      
-	  <!-- 品牌管理 -->
-	  <div  class="x-tree-node-el  feeds-node" >
-		  <img  class="x-tree-ec-icon x-tree-elbow-end-minus" src="<?php echo base_url()?>images/s.gif" title="关闭">
-		  <img class="x-tree-node-icon"  src="<?php echo base_url()?>images/s.gif"/>
-		  <span >品牌管理</span>
-	  </div>
-    
-	  <ul  style="display:" class="x-tree-node-ct">
-	  <li class="x-tree-node"><div  class="x-tree-node-el x-tree-node-leaf  feed" ><span class="x-tree-node-indent"><img class="x-tree-icon" src="<?php echo base_url()?>images/s.gif"/></span><img  class="x-tree-node-icon feed-icon" src="<?php echo base_url()?>images/s.gif"/><a href="<?php echo site_url('brand')?>" target="main-frame" style=""><span >品牌列表</span></a></div></li>
-
-	  <li class="x-tree-node"><div  class="x-tree-node-el x-tree-node-leaf  feed" ><span class="x-tree-node-indent"><img class="x-tree-icon" src="<?php echo base_url()?>images/s.gif"/></span><img  class="x-tree-node-icon add-feed" src="<?php echo base_url()?>images/s.gif"/><a href="<?php echo site_url('brand/add')?>" target="main-frame" style=""><span >添加品牌</span></a></div></li>
-	  </ul>
-	 
+	  
     </li>
     </div>
     </ul>
     </div>
-
   </div>
 
-</div><!-- /menu -->
+<!-- /menu -->
 
 <div id="menu-xcollapsed" class="x-layout-collapsed x-layout-collapsed-west" style="display: none; width: 20px; position: absolute; visibility: visible; left: 5px;  z-index: 20;">
 <a href="#" class="toggleMenu"><div class="x-tool x-tool-expand-west" ></div></a> 

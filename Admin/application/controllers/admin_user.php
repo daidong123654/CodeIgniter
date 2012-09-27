@@ -7,7 +7,7 @@
  * Window - Preferences - PHPeclipse - PHP - Code Templates
  */
  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
- class admin_user extends CI_Controller
+ class Admin_user extends CI_Controller
  {
  	/**
  	 *构造函数
@@ -17,7 +17,7 @@
  	 */
  	 function  __construct()
  	 {
- 	 	parent::CI_Controller();
+ 	 	parent::__construct();
  	 	$this->load->library("session");
  	 	if(!$this->session->userdata('logged_in'))
  	 	{
@@ -34,11 +34,14 @@
  	  */ 	
  	  function index()
  	  {
+ 	  	//echo "admin_user line 37";
  	  	$this->load->model('admin_user_model');
  	  	
  	  	$data['admin_users'] = $this->admin_user_model->find_admin_users();
  	  	
- 	  	$this->load->view('views/admin/admin_list',$data);
+ 	  	$this->load->view('admin/admin_list',$data);
+ 	  		//print_r($data);
+ 	  	
  	  }
  	  
  	  //-------------------------------------------------------------------------------------------------------------
@@ -61,25 +64,33 @@
  	    function edit()
  	    {
  	    	//检查操作权限
+ 	    	//echo "USER67";
  	    	if(!admin_priv('admin_user_manage'))
  	    	{
+ 	    		//echo "USER69";
  	    		return show_message2('你没有此项操作的权限！','admin_user');
  	    	}
  	    	
- 	    	$params = $this->uri->uri_to_assoc();
+ 	    	$params = $this->uri->uri_to_assoc(); //将url分成a=>b(a/b)的数组
+ 	    	//print_r($params);
  	    	if(!empty($params['id']) && $params['id'] > 0)
  	    	{
+ 	    		//echo "user77";
  	    		$id = $params['id'];
+ 	    		//echo " id".$id;
  	    		$this->load->model('admin_user_model');
  	    		$data['editing'] = $this->admin_user_model->load($id);
+ 	    		//print_r($data);
  	    		if(!$data['editing'])
  	    		{
+ 	    			//echo "user 84";
  	    			return show_message2('无效ID'.$id,'admin_user');
  	    		}
- 	    		$data['header_text'] = '编辑管理员(ID:'.$data['editing']['id'].')';
+ 	    		$data['header_text'] = '编辑管理员(ID:'.$data['editing']['mID'].')';
  	    	}
  	    	else
  	    	{
+ 	    		//echo "user89";
  	    		$data['editing'] = array(
                 'id' => null,
                 'name' => null,
@@ -93,7 +104,7 @@
 			$this->load->model('role_model');			
 			$data['roles'] = $this->role_model->find_roles();
 		
-			$this->load->view('admin/edit',$data);
+			$this->load->view('admin/admin_edit',$data);
  	    }
  	    
  	    //---------------------------------------------------------------------------------------------------
@@ -165,8 +176,8 @@
  	     		$this->load->model('admin_user_model');
  	     		$this->admin_user_model->name = $name;
  	     		$this->admin_user_model->email = $email;
- 	     		$this->admin_user_model->password = $password;
- 	     		$this->admin_user-model->admin_id = $role_id;
+ 	     		$this->admin_user_model->password = $password; 	     		
+ 	     		$this->admin_user_model->role_id = $role_id;
  	     		
  	     		//更新管理员资料
  	     		if($id)

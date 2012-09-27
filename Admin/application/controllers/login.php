@@ -75,6 +75,7 @@
  	   			//show_message2('用户名或者密码错误！','login'); 	   			
  	   			//redirect('login');
  	   			echo "用户名或者密码错误！";
+ 	   			$this->load->view('admin/admin_login');
  	   		} 	   		
  	   	} 
  	   	//非法登陆
