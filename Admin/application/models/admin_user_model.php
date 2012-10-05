@@ -56,7 +56,7 @@
  	  	$this->db->set('Mname',$this->name);
  	  	$this->db->set('Memail',$this->email);
  	  	$this->db->set('Mpass',md5($this->password));
- 	  	$this->db->set('PowerLevel',$this->PowerLevel);
+ 	  	$this->db->set('role_id',$this->role_id);
  	  	$this->db->set('CreateDate',$datetime);
  	  	$this->db->set('UpdateDate',$datetime);
  	  	
@@ -73,11 +73,12 @@
  	   {
  	   	 $query = $this->db->get('lib_manager');
  	   	 $rows = array();	
+ 	   	 //print_r($query);
  	   	 foreach($query->result_array() as $row)
  	   	 {
  	   	 	//角色
  	   	 	//print_r($row);
- 	   	 	$query1 = $this->db->get_where('lib_role',array('id'=>$row['PowerLevel']));
+ 	   	 	$query1 = $this->db->get_where('lib_role',array('id'=>$row['role_id']));
  	   	 	$row1 = $query1->row_array();
  	   	 	if(!empty($row1))
  	   	 	{
@@ -112,7 +113,7 @@
  	    	{
  	    		$this->db->set('Mpass',md5($this->password));
  	    	}
- 	    	$this->db->set('PowerLevel',$this->PowerLevel);
+ 	    	$this->db->set('role_id',$this->role_id);
  	    	$this->db->set('UpdateDate',$datetime);
  	    	return $this->db->update('lib_manager');
  	    }
@@ -169,8 +170,8 @@
  	      	//认证通过
  	      	if($row = $query->row_array())
  	      	{
- 	      		//角色这里的id和manager中的PowerLevel是一个
- 	      		$query1 = $this->db->get_where('lib_role',array('id'=>$row['PowerLevel']));
+ 	      		//角色这里的id和manager中的role_id是一个
+ 	      		$query1 = $this->db->get_where('lib_role',array('id'=>$row['role_id']));
  	      		//将该角色的所有操作放在row1中
  	      		$row1 = $query1->row_array();
  	      		if(!empty($row1))

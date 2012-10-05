@@ -1,4 +1,5 @@
 ﻿<?php
+if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class news extends CI_Controller
 {
 	public function __construct()
@@ -11,9 +12,10 @@ class news extends CI_Controller
 	{
 		$data['news'] = $this->news_model->get_news();
 		$data['title'] = 'News archive';
-		$this->load->view('templates/header', $data);
+		
+		//print_r($data);
 		$this->load->view('news/index', $data);
-		$this->load->view('templates/footer');
+
 	}
 	public function view($slug)
 	{
@@ -34,6 +36,7 @@ class news extends CI_Controller
 	{
 		$this->load->helper('form');
 		$this->load->library('form_validation');
+		$this->load->library('CuteEditor');
   
 		$data['title'] = 'Create a news item';
   
@@ -42,20 +45,16 @@ class news extends CI_Controller
   
 		if ($this->form_validation->run() === FALSE)
 		{
-			$this->load->view('templates/header', $data);  
 			$this->load->view('news/create');
-			$this->load->view('templates/footer');
     
 		}
 		else
 		{
 			$this->news_model->set_news();
 			
-			$this->load->view('templates/header');  
 			$this->load->view('news/success');
-			$this->load->view('templates/footer');
 			
 		}
-}
+	}
 }
 ?>

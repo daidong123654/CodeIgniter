@@ -65,12 +65,16 @@
  	    {
  	    	//检查操作权限
  	    	//echo "USER67";
- 	    	if(!admin_priv('admin_user_manage'))
+ 	    	if(!admin_priv('admin_user_add'))
  	    	{
  	    		//echo "USER69";
- 	    		return show_message2('你没有此项操作的权限！','admin_user');
+ 	    		return show_message2('你没有添加管理员的权限！','admin_user');
  	    	}
- 	    	
+ 	    	if(!admin_priv('admin_user_edit'))
+ 	    	{
+ 	    		//echo "USER69";
+ 	    		return show_message2('你没有编辑管理员的权限！','admin_user');
+ 	    	}
  	    	$params = $this->uri->uri_to_assoc(); //将url分成a=>b(a/b)的数组
  	    	//print_r($params);
  	    	if(!empty($params['id']) && $params['id'] > 0)
@@ -92,9 +96,9 @@
  	    	{
  	    		//echo "user89";
  	    		$data['editing'] = array(
-                'id' => null,
-                'name' => null,
-				'email' => null,
+                'mID' => null,
+                'Mname' => null,
+				'Memail' => null,
 				'role_id' => null,			
             	);
 			$data['header_text'] = '添加管理员';
@@ -103,7 +107,7 @@
 			// 角色结果集
 			$this->load->model('role_model');			
 			$data['roles'] = $this->role_model->find_roles();
-		
+			//print_r($data);
 			$this->load->view('admin/admin_edit',$data);
  	    }
  	    
@@ -120,7 +124,7 @@
  	     	
  	     	//管理员id
  	     	$id = $this->input->post('id');
- 	     	
+ 	     	//echo $id;
  	     	$name = $this->input->post('name');
  	     	$email = $this->input->post('email');
  	     	$new_pw = $this->input->post('new_pw');
@@ -142,7 +146,7 @@
  	     		if($new_pw)  //输入了新的密码
  	     		{
  	     			//旧密码验证
- 	     			if(md5($old_pw) == $admin_user['password'])
+ 	     			if(md5($old_pw) == $admin_user['Mpass'])
  	     			{
  	     				$password = char_limit1($new_pw,32);
  	     			}
@@ -164,13 +168,13 @@
  	     	}
  	     	
  	     	//加载表单验证类
- 	     	$this->load->library('validation');
+ 	     	$this->load->library('form_validation');
  	     	
  	     	//设置表单验证规则
  	     	$this->set_save_form_rules();
  	     	
  	     	//如果提交的数据符合所设置的规则，则继续执行	
- 	     	if($this->validation->run() == TRUE)
+ 	     	if($this->form_validation->run() == TRUE)
  	     	{
  	     		//将数据提交给数据模型
  	     		$this->load->model('admin_user_model');
@@ -201,6 +205,7 @@
  	     		//添加新管理员
  	     		else
  	     		{
+ 	     			
  	     			$this->admin_user_model->create();
  	     			if($re_edit)
  	     			{
@@ -216,6 +221,8 @@
  	     	else
  	     	{
  	     		//数据不合规则的提示（还没有写）
+ 	     		//echo "数据不合规则的提示";
+ 	     		show_message2('数据不合规则的提示！','admin_user');
  	     	}     	
  	     }
  	     
@@ -228,9 +235,9 @@
  	     function delete()
  	     {
  	     	//检查权限
- 	     	if(!admin_priv('admin_user_delete'))
+ 	     	if(!admin_priv('admin_user_del'))
  	     	{
- 	     		return show_message2('你没有此项操作的权限！','admin_user');
+ 	     		return show_message2('你没有删除该管理员的权限！','admin_user');
  	     	}
  	     	
  	     	$params = $this->uri->uri_to_assoc();
@@ -268,7 +275,7 @@
  	     {
  	     	//管理员名字
  	     	$rules['name'] = 'trim|required';
- 	     	$this->validation->set_rules($rules);
+ 	     	$this->form_validation->set_rules($rules);
  	     }
  	     
  }

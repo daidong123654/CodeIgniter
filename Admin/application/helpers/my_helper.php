@@ -148,23 +148,155 @@
       	return (mb_strlen($str) > $val)?mb_substr($str,0,$val).'...':$str;
       }
       
-      //------------------------------------------------------------------------------------
+      
+      
       /**
- 	   * 功能：检查权限 
- 	   */
+ * 限制数值的最高值
+ * 
+ * 
+ */
 
-	function admin_priv($priv_str)
-	{   
-		$CI = & get_instance();
-		$action_list = $CI->session->userdata('action_list');
-
-    	if (strpos(',' . $action_list . ',', ',' . $priv_str . ',') === false)
-    	{                
-        	return false;
-    	}  
-	
-    	return true;
+function num_limit($num,$val)
+{
+	if(!is_numeric($num)){
+		return 0;
+	}
+    return ((float)$num >(float)$val) ? $val : $num;
 }
+
+
+/**
+ * 功能：递归创建文件夹
+ * 参数：$param 文件路径
+ */
+function mkdirsByPath($param){
+	if(! file_exists($param)) {
+		mkdirsByPath(dirname($param));
+		@mkdir($param);
+	}
+	return realpath($param);
+}
+
+/**
+ * 功能：删除非空目录 
+ */
+function deldir($dir) 
+{
+    $dh=opendir($dir);
+    while ($file=readdir($dh)) {
+        if($file!="." && $file!="..") {
+            $fullpath=$dir."/".$file;
+            if(!is_dir($fullpath)) {
+                unlink($fullpath);
+            } else {
+                deldir($fullpath);
+            }
+        }
+    }
+    closedir($dh);
+    if(rmdir($dir)) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+
+/**
+ * 功能：两个数组并集 
+ */
+function array_and($array1=array(), $array2=array()) 
+{
+   $res = array();   //结果数组
+   $res = $array1;   //直接将数组1赋值给结果数组
+      
+   $arr2 = array_diff($array2,$array1);
+   
+   $res = array_merge($res , $arr2);
+
+   return is_array($res) ? $res : array();
+}
+
+/**
+ * 功能：检查权限 
+ */
+
+function admin_priv($priv_str)
+{   
+	$CI = & get_instance();
+	$action_list = $CI->session->userdata('action_list');
+	//echo $action_list;
+    if (strpos(',' . $action_list . ',', ',' . $priv_str . ',') === false)
+    {       
+    	//echo "230";         
+        return false;
+    }  
+	
+    return true;
+}
+
+
+/**
+ * 获得当前格林威治时间的时间戳
+ *
+ * @return  integer
+ */
+function gmtime()
+{
+    return (time() - date('Z'));
+}
+
+
+/**
+ * 动态创建属性列表
+ *
+ * @return  string
+ */
+function build_attr_html($arrt_type,$attr_id,$option_values = array(),$default_value ='')
+ {
+	 $html = '';
+
+     switch($arrt_type){
+
+		 case     'text': $html = '<input style="width: 222px;" class="x-form-text x-form-field " size="20"                            name="attr_values['.$attr_id.'][]"  type="text" value="'.$default_value.'" 
+		                  >'; 
+						  break;
+
+		 case 'textarea': $html = '<textarea rows="4" cols="80" name="attr_values['.$attr_id.'][]" class="  
+		                  x-form-field 
+		                  " >'.$default_value.'</textarea>';       break;
+
+		 case    'radio': foreach($option_values as $value):
+			              $html .= ($default_value != $value) ?
+			                      '<input style="width: 20px;" size="20"  name="attr_values['.$attr_id.'][]" type="radio" value="'.$value.'"  >'.$value :
+			                      '<input style="width: 20px;" size="20"  name="attr_values['.$attr_id.'][]" type="radio" value="'.$value.'"  checked="checked">'.$value.'' ;
+		                  endforeach;
+						  $html .='<input style="width: 20px;" size="20"      
+						           type="radio"   name="attr_values['.$attr_id.'][]" value="">不选';
+		                  break;
+
+		 case 'checkbox': foreach($option_values as $value):
+			              $html .= (!in_array($value,$default_value)) ?
+			                      '<input style="width: 20px;" size="20"  name="attr_values['.$attr_id.'][]" type="checkbox" value="'.$value.'"  >'.$value  :
+			                      '<input style="width: 20px;" size="20"  name="attr_values['.$attr_id.'][]" type="checkbox" value="'.$value.'" checked="checked" >'.$value;
+
+		                  endforeach;
+						  $html .='<input style="width: 20px;" size="20"      
+						           type="hidden"   name="attr_values['.$attr_id.'][]" value="">';
+		                   break;
+
+		 case   'select': $html .= '<select name="attr_values['.$attr_id.'][]"        
+		                  style="height:22px;"><option value="">请选择...</option>';
+		                  foreach($option_values as $value) : 
+		                  $html .= ($default_value != $value) ?
+							  '<option value="'.$value.'">'.$value.'</option>':
+							  '<option value="'.$value.'" selected="selected" >'.$value.'</option>';
+		                  endforeach;
+		                  $html .='</select>'; break;
+
+	 }
+	 return $html;
+ }
       
       
       

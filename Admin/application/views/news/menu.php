@@ -38,7 +38,7 @@
 			<table  cellspacing="0" cellpadding="0" border="0" style="width: auto;"><tbody><tr>
 			<td class="x-btn-left"></td>
 			<td class="x-btn-center">
-			<em ><a  href="<?php echo site_url('news/add')?>" target="main-frame" ><button  class="x-btn-text add-feed" type="button" onclick="parent.document.getElementById('main-frame').src='<?php echo site_url('news/add');?>'">添加新闻</button></a></em>
+			<em ><a  href="<?php echo site_url('news/create')?>" target="main-frame" ><button  class="x-btn-text add-feed" type="button" onclick="parent.document.getElementById('main-frame').src='<?php echo site_url('news/create');?>'">添加新闻</button></a></em>
 			</td>
 			<td class="x-btn-right"><i> </i></td>
 			</tr></tbody></table>

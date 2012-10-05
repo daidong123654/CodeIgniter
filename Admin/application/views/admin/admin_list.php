@@ -88,7 +88,16 @@ function delete_a(id)
 	<!--<button class="btn btn-large btn-block" type="button" >-->	
 		<tr>		
 			<td><?php echo $value['Mname'];?></td> 
-			<td><?php echo$value['role_name'];?></td>
+			<td>
+				<?php 
+				if(!$value['role_name'])
+					echo "非法管理员";
+				else
+					echo $value['role_name'];
+				?>
+			</td>
+				
+				
 			<td><?php echo$value['Memail'];?></td>
 			<td><?php echo$value['CreateDate'];?>
 			<td>待定</td>

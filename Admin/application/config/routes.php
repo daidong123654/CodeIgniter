@@ -39,16 +39,17 @@
 */
 
 $route['news/create'] = 'news/create';
-$route['admin'] = 'admin';
+$route['admin'] = 'admin/login';
 //$route['Frameset/index'] = 'Frameset/index';
-$route['reader'] = 'reader';
+//$route['reader'] = 'reader';
 $route['news/(:any)'] = 'news/view/$1';
 $route['news'] = 'news';
 $route['about']='pages/view';
 $route['home']='pages/view';
 
 //$route['(:any)'] = 'pages/view/$1';
-$route['default_controller'] = 'pages/view';
+//$route['default_controller'] = 'pages/view';
+$route['default_controller'] = 'login';
 //$route['default_controller'] = "welcome";
 //$route['404_override'] = '';
 

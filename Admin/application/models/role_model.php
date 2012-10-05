@@ -16,10 +16,11 @@
  	function __construct()
  	{
  		parent::__construct();
+ 		$this->load->database();
  		
  	}
  	
- 	//----------------------------------------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------------------------
  	/**
  	 * load by id
  	 * 
@@ -29,6 +30,7 @@
  	 {
  	 	if(!$id)
  	 	{
+ 	 		//echo "46";
  	 		return array();
  	 	}
  	 	
@@ -36,6 +38,8 @@
  	 	
  	 	if($row = $query->row_array())
  	 	{
+ 	 		//echo "54";
+ 	 		//print_r($row);
  	 		return $row;
  	 	}
  	 	
@@ -54,10 +58,11 @@
  	  	$datetime = date('Y-m-d H:i:s');
  	  	$this->db->set('name',$this->name);
  	  	$this->db->set('action_list',$this->action_list);
+ 	  	//echo $this->action_list;
  	  	$this->db->set('created_at',$datetime);
  	  	$this->db->set('updated_at',$datetime);
  	  	
- 	  	return $this->db->update('lib_role');
+ 	  	return $this->db->insert('lib_role');
  	  }
  	  
  	  //-----------------------------------------------------------------------------------------------------------
@@ -70,10 +75,12 @@
  	   {
  	   	$query = $this->db->get('lib_role');
  	   	$rows = array();
- 	   	foreach ($query->result_array as $row)  
+ 	   	foreach ($query->result_array() as $row)  
  	   	{
  	   		$rows[$row['id']] = $row;
+ 	   		//print_r($row);
  	   	}
+ 	   	//print_r($rows);
  	   	return $rows;   //rows中的第id项row['id']项是表中id等于角标id的所有信息
  	   }
  	   

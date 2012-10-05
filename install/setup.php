@@ -67,7 +67,7 @@ else
 		else
 		{
 			$pass = md5($password);
-			$sql="insert into lib_manager( Mname,Memail,Mpass,PowerLevel) values ('$name','$email','$pass','1')";
+			$sql="insert into lib_manager( Mname,Memail,Mpass,role_id) values ('$name','$email','$pass','1')";
 			if(mysql_query($sql,$link) )//执行插入操作
 			{
 				?>
