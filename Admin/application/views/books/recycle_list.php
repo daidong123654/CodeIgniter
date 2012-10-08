@@ -40,7 +40,7 @@ $(window).resize(function(){
 
 $(document).ready(function() {
   $('#search-action').click(function(){
-   $.post('<?php echo site_url('books/index')?>', $('#search-form').serialize(), function(data) {
+   $.post('<?php echo site_url('books/recycle')?>', $('#search-form').serialize(), function(data) {
 	  $('.x-grid3-row').remove();
 	  $('#page').remove();
 	  $('.x-grid3-row',data).appendTo($('#listTable tbody'));	  
@@ -56,7 +56,7 @@ $(document).ready(function() {
 
 function in_recycle(id,obj)
 {
-	if (confirm('确定把该书籍放入回收站吗？')){
+	if (confirm('确定把该书籍永久删除吗？')){
     /*$.ajax({
 	  url: '<?php echo site_url('books/in_recycle/id')?>'+'/'+id,
 	  type: 'GET',
@@ -66,7 +66,7 @@ function in_recycle(id,obj)
 		_reset_page();
       }
 	});*/
-	window.location.href= '<?php echo site_url('books/in_recycle/id')?>'+'/'+id;
+	window.location.href= '<?php echo site_url('books/delete/id')?>'+'/'+id;
     }
 }
 
@@ -154,7 +154,7 @@ function listEdit(obj, field, id)
   <a class="x-tab-right" href="#" onClick="return false;">
   <em class="x-tab-left">
   <span style="width: 130px;" class="x-tab-strip-inner">
-  <span class="x-tab-strip-text">书籍列表</span>
+  <span class="x-tab-strip-text">删除的书籍列表</span>
   </span>
   </em>
   </a>
@@ -278,14 +278,14 @@ function listEdit(obj, field, id)
 			<td ><div class="x-grid3-cell-inner "><?php echo $value['barcode'] ?></div></td>
 			
 			<td ><div class="x-grid3-cell-inner ">
-			 <a href='<?php echo site_url('books')?>' style="text-decoration:none" alt='浏览' title='浏览'>
+			 <a href='<?php echo site_url('books/recycle')?>' style="text-decoration:none" alt='浏览' title='浏览'>
 			 <img src="<?php echo base_url()?>images/icon_view.gif" border="0" width="16" height="16">
 			 </a>&nbsp;&nbsp;
-			 <a href='<?php echo site_url('books/edit/bookID/'.$value['bookID'])?>' style="text-decoration:none" alt='编辑' title='编辑'>
-			 <img src="<?php echo base_url()?>images/icon_edit.gif" border="0" width="16" height="16">
+			 <a href='<?php echo site_url('books/out_recycle/bookID/'.$value['bookID'])?>' style="text-decoration:none" alt='还原' title='还原'>
+			 <img src="<?php echo base_url()?>images/out_recycle.gif" border="0" width="16" height="16">
 			 </a>&nbsp;&nbsp;
-			 <a href='#' id="in_recycle" style="text-decoration:none"  title='放入回收站' onclick="in_recycle('<?php echo $value['bookID']?>',this)">
-			 <img src="<?php echo base_url()?>images/icon_trash.gif" border="0" width="16" height="16" alt='放入回收站'>
+			 <a href='#' id="in_recycle" style="text-decoration:none"  title='永久删除' onclick="in_recycle('<?php echo $value['bookID']?>',this)">
+			 <img src="<?php echo base_url()?>images/delete.gif" border="0" width="16" height="16" alt='放入回收站'>
 			 </a>
 			</div></td>
 		  </tr>
@@ -315,7 +315,7 @@ function listEdit(obj, field, id)
 		$data['show_start'] = $show_start;
 		$data['show_end'] = $show_end;
 		$data['total_rows'] = $total_rows;
-		$this->load->view('widget/pagination', $data)
+		$this->load->view('widget/recycle_pagination', $data)
 	    ?>
 		<!-- /分页显示 -->
 		</div><!-- /内容 -->	   

@@ -38,6 +38,8 @@
  	
  	var $isdelete;   //是否被删除了
  	
+ 	var $UpdateDate;
+ 	
  	function __construct()
  	{
  		parent::__construct();
@@ -106,45 +108,16 @@
  	 	$this->db->set('storge',$this->storge);
  	 	$this->db->set('publishtime',$this->publishtime);
  	 	$this->db->set('inTime',$datetime);
- 	 	$this->db->set('isdelete',1);
+ 	 	$this->db->set('isdelete','0');
+ 	 	//if($UpdateDate)
+ 	 	//{
+ 	 		//$this->db->set('UpdateDate',$UpdateDate);
+ 	 	//}
  	 	
  	 	return $this->db->insert('lib_bookinfo'); 	 	
  	 }
  	 
- 	 
- 	 // --------------------------------------------------------------------
-
-    /**
-	 * 结果集
-	 *
-	 *
-	 	
-    function find_products($options = array(), $count=20, $offset=0, $is_delete=0)
-	{
-		if (!is_array($options))
-		{
-            return array();
-        }
-
-        if ($count)
-        {
-            $this->db->limit((int)$count, (int)$offset);
-        }
-        
-		//product
-        $this->db->select('p.*');
-        
-        $this->db->select('c.name as cat_name');
-		
-		$query = $this->_query_books($options,$is_delete);
-
-        $rows = array();
-        foreach ($query->result_array() as $row)
-        {
-            $rows[] = $row;
-        }
-        return $rows;
-	}*/
+ 	
  	 
  	 //-----------------------------------------------------------------------------------------------------------
  	 /**
@@ -155,7 +128,7 @@
  	  function update($id)
  	 {
  	 	$datetime = date('Y-m-d H:i:s');
- 	 	$this->db->set('barcode',$this->barcode);
+ 	 	//$this->db->set('barcode',$this->barcode);
  	 	$this->db->set('bookname',$this->bookname);
  	 	$this->db->set('booktype',$this->booktype);
  	 	$this->db->set('author',$this->author);
@@ -168,8 +141,8 @@
  	 	$this->db->set('storge',$this->storge);
  	 	$this->db->set('publishtime',$this->publishtime);
  	 	$this->db->set('UpdateDate',$datetime);
- 	 	$this->db->set('isdelete',1);
- 	 	
+ 	 	//$this->db->set('isdelete','0');
+ 	 	$this->db->where('bookID',$id);
  	 	return $this->db->update('lib_bookinfo'); 	 	
  	 }
  	 
@@ -181,12 +154,22 @@
  	  */
  	  function delete($id)
  	  {
- 	  	$this->db->where('bacode',$id);
- 	  	//$this->db->delete('')这里做的不是将内容删除而是将删除标志置为1
- 	  	$this->db->set('isdelete',1);
- 	  	$this->db->update('lib_content');
+ 	  		  	
+ 	  	return $this->db->delete('lib_bookinfo',array('bookID'=>$id));
  	  	
- 	  	$thsi->db->where('bookID',$id);
+ 	  }
+ 	  
+ 	  //--------------------------------------------------------------------------------------------------------------
+ 	 /**
+ 	  * 放入 回收站
+ 	  * 
+ 	  * 
+ 	  */
+ 	  function in_recycle($id)
+ 	  {
+ 	  	
+ 	  	
+ 	  	$this->db->where('bookID',$id);
  	  	//$this->db->delete('lib_bookinfo');这里做的不是将内容删除而是将删除标志置为1
  	  	$this->db->set('isdelete',1);
  	  	$this->db->update('lib_bookinfo');
@@ -201,7 +184,7 @@
  	   	 * 
  	   	 */	   	
  	   	
- 	   function find_books($options = array(),$order,$count=20, $offset=0, $is_delete=0)	
+ 	   function find_books($options = array(),$count=20, $offset=0, $is_delete=0)	
  	   {
  	   		if(!is_array($options))
  	   	 	{
@@ -210,7 +193,8 @@
  	   	 	}
  	   	 	if ($count)
  	   	 	{
-            	$this->db->limit((int)$count, (int)$offset);
+            	//$this->db->limit((int)$count, (int)$offset);
+            	$limit = "limit $offset , $count";
         	}
         	//没有图书类型，只有查询方式和相应关键字
         	if($options['booktype'] == '')
@@ -221,7 +205,7 @@
         			//////echo '221';
 	        		$selecttype = $options['selecttype'];
 	        		$keywords = $options['keywords'];
-	        		$sql = "select * from lib_bookinfo where $selecttype = '$keywords' and isdelete ='$is_delete'";
+	        		$sql = "select * from lib_bookinfo where $selecttype = '$keywords' and isdelete ='$is_delete'".$limit;
 	        	}
 	        	//输入关键字但是没选择查询方式，则选择默认查询方式（bookname）
 	        	else if($options['selecttype']=='' && $options['keywords'] != '')
@@ -229,13 +213,13 @@
 	        		//////echo '229';
 	        		$selecttype = 'bookname';
 	        		$keywords = $options['keywords'];
-	        		$sql = "select * from lib_bookinfo where $selecttype = '$keywords' and isdelete ='$is_delete'";
+	        		$sql = "select * from lib_bookinfo where $selecttype = '$keywords' and isdelete ='$is_delete'".$limit;
 	        	}
 	        	//关键字和查询类型都为空
 	        	else if($options['selecttype']=='' && $options['keywords'] == '')
 	        	{
 	        		//////echo '237';
-	        		$sql = "select * from lib_bookinfo where isdelete ='$is_delete'";
+	        		$sql = "select * from lib_bookinfo where isdelete ='$is_delete'".$limit;
 	        	}	        	
 	        	else
 	        	{
@@ -255,7 +239,7 @@
         			//////echo '255';
         			$selecttype = $options['selecttype'];
         			$keywords = $options['keywords'];
-        			$sql = "select * from lib_bookinfo where $selecttype = '$keywords' and isdelete = '$is_delete' and booktype = '$booktype'";
+        			$sql = "select * from lib_bookinfo where $selecttype = '$keywords' and isdelete = '$is_delete' and booktype = '$booktype'".$limit;
         	
         		}
         		//图书类型+关键字类型+关键字为空
@@ -264,14 +248,14 @@
         			////echo '264';
         			$selecttype = $options['selecttype'];
         			$keywords = $options['keywords'];
-        			$sql = "select * from lib_bookinfo where $selecttype = '$keywords' and isdelete = '$is_delete' ";
+        			$sql = "select * from lib_bookinfo where $selecttype = '$keywords' and isdelete = '$is_delete' ".$limit;
         	
         		}
         		//只有图书类型
         		elseif($options['selecttype']== '' && $options['keywords']=='' )
         		{
         			//echo '273';
-        			$sql = "select * from lib_bookinfo where isdelete = '$is_delete' and booktype = '$booktype'";
+        			$sql = "select * from lib_bookinfo where isdelete = '$is_delete' and booktype = '$booktype'".$limit;
         		}
         		else
 	        	{
@@ -345,7 +329,7 @@
  	     function get_newly_one()
  	     {
  	     	$this->db->from('lib_bookinfo');
-        	$this->db->order_by("id", "desc");
+        	$this->db->order_by("bookID", "desc");
         	$this->db->limit('1');
         	$query =  $this->db->get();
         	return $query->row_array();
@@ -459,7 +443,8 @@
         	
         	return $total;
  	       }
- 	       
+		   
+ 	       //---------------------------------------------
  	       /**
 			 * 出回收站
 			 *
@@ -472,6 +457,18 @@
         		return $this->db->update('lib_bookinfo');
 		   }
 		   
+	// --------------------------------------------------------------------
+    /**
+	 * 查询某分类下是否有商品
+	 *
+	 *
+	 */	
+	function check_books_by_cat($booktype)
+	{
+		$this->db->select('bookID');
+        $query = $this->db->get_where('lib_bookinfo',array('booktype' => $booktype));
+		return $query->row_array();
+	}
 		  
  }
 ?>

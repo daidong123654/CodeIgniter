@@ -193,7 +193,7 @@ $(window).resize(function(){
 	  <div class="x-form-item" >
 		<label style="width: 75px;color:dimgray;" class="x-form-item-label">新密码:</label>
 		<div class="x-form-element" style="padding-left: 60px;">
-		 <input style="width: 222px;" class="x-form-text x-form-field x-form-required x-form-pwd_c" size="20" name="new_pw" id="new_pw" type="password" value=""  >
+		 <input style="width: 222px;" class="x-form-text x-form-field x-form-required x-form-pwd_c" size="20" name="new_pw" id="new_pw" type="password" value=""  placeholder="密码最少为6位">
 		</div>
 		<div class="x-form-clear-left"></div>
 	  </div>
@@ -201,7 +201,7 @@ $(window).resize(function(){
 	  <div class="x-form-item" >
 		<label style="width: 75px;color:dimgray;" class="x-form-item-label">确认密码:</label>
 		<div class="x-form-element" style="padding-left: 60px;">
-		 <input style="width: 222px;" class="x-form-text x-form-field x-form-required x-form-pwd_cc" size="20" name="pwd_confirm" id="pwd_confirm" type="password" value=""  >
+		 <input style="width: 222px;" class="x-form-text x-form-field x-form-required x-form-pwd_cc" size="20" name="pwd_confirm" id="pwd_confirm" type="password" value="" placeholder="密码最少为6位" >
 		</div>
 		<div class="x-form-clear-left"></div>
 	 </div>
@@ -211,7 +211,7 @@ $(window).resize(function(){
 	 <?php  } else{?>
 
 	 <div class="x-form-item" >
-		<label style="width: 75px;color:dimgray;" class="x-form-item-label">密码:</label>
+		<label style="width: 75px;color:dimgray;" class="x-form-item-label">密码（最少6位）:</label>
 		<div class="x-form-element" style="padding-left: 60px;">
 		 <input style="width: 222px;" class="x-form-text x-form-field x-form-required x-form-pwd_c" size="20" name="password" id="password" type="password" value=""  >
 		</div>

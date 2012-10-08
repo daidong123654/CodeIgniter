@@ -66,7 +66,6 @@
 
 	  <li class="x-tree-node"><div  class="x-tree-node-el x-tree-node-leaf feed" ><span class="x-tree-node-indent"><img class="x-tree-icon" src="<?php echo base_url()?>images/s.gif"/></span><img  class="x-tree-node-icon add-feed" src="<?php echo base_url()?>images/s.gif"/><a  href="<?php echo site_url('books/add')?>" target="main-frame" ><span >添加图书</span></a></div></li>
 	  
-	  <li class="x-tree-node"><div  class="x-tree-node-el x-tree-node-leaf feed" ><span class="x-tree-node-indent"><img class="x-tree-icon" src="<?php echo base_url()?>images/s.gif"/></span><img  class="x-tree-node-icon feed-icon" src="<?php echo base_url()?>images/rss_search2.png"/><a href="<?php echo site_url('books/search')?>" target="main-frame"><span >查找图书</span></a></div></li>
 	  
 	  <!--
 	  <li class="x-tree-node"><div  class="x-tree-node-el x-tree-node-leaf feed" ><span class="x-tree-node-indent"><img class="x-tree-icon" src="<?php //echo base_url()?>images/s.gif"/></span><img  class="x-tree-node-icon add-feed" src="<?php //echo base_url()?>images/s.gif"/><a  href="<?php //echo site_url('books/add')?>" target="main-frame" ><span >删除图书</span></a></div></li>
@@ -85,6 +84,19 @@
 	  <li class="x-tree-node"><div  class="x-tree-node-el x-tree-node-leaf  feed" ><span class="x-tree-node-indent"><img class="x-tree-icon" src="<?php echo base_url()?>images/s.gif"/></span><img  class="x-tree-node-icon feed-icon" src="<?php echo base_url()?>images/s.gif"/><a href="<?php echo site_url('category')?>" target="main-frame" style=""><span >分类列表</span></a></div></li>
 
 	  <li class="x-tree-node"><div  class="x-tree-node-el x-tree-node-leaf  feed"  ><span class="x-tree-node-indent"><img class="x-tree-icon" src="<?php echo base_url()?>images/s.gif"/></span><img  class="x-tree-node-icon add-feed" src="<?php echo base_url()?>images/s.gif"/><a  href="<?php echo site_url('category/add')?>" target="main-frame" ><span >添加分类</span></a></div></li>
+	  </ul>
+	  
+	  <!--出版社管理 -->
+	  <div  class="x-tree-node-el  feeds-node" >
+		  <img  class="x-tree-ec-icon x-tree-elbow-end-minus" src="<?php echo base_url()?>images/s.gif" title="关闭" >
+		  <img class="x-tree-node-icon"  src="<?php echo base_url()?>images/s.gif"/>
+		  <span >出版社管理</span>
+	  </div>
+    
+	  <ul   class="x-tree-node-ct" style="display:">
+	  <li class="x-tree-node"><div  class="x-tree-node-el x-tree-node-leaf  feed" ><span class="x-tree-node-indent"><img class="x-tree-icon" src="<?php echo base_url()?>images/s.gif"/></span><img  class="x-tree-node-icon feed-icon" src="<?php echo base_url()?>images/s.gif"/><a href="<?php echo site_url('ISBN')?>" target="main-frame" style=""><span >出版社列表</span></a></div></li>
+
+	  <li class="x-tree-node"><div  class="x-tree-node-el x-tree-node-leaf  feed"  ><span class="x-tree-node-indent"><img class="x-tree-icon" src="<?php echo base_url()?>images/s.gif"/></span><img  class="x-tree-node-icon add-feed" src="<?php echo base_url()?>images/s.gif"/><a  href="<?php echo site_url('ISBN/add')?>" target="main-frame" ><span >添加出版社</span></a></div></li>
 	  </ul>
 	  
     </li>

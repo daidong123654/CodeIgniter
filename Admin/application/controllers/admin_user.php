@@ -275,6 +275,8 @@
  	     {
  	     	//管理员名字
  	     	$rules['name'] = 'trim|required';
+ 	     	$rules['email'] = 'valid_email';
+ 	     	$rules['password'] = 'less_than[6]';
  	     	$this->form_validation->set_rules($rules);
  	     }
  	     

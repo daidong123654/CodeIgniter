@@ -124,21 +124,9 @@
 	 </form>
 	 
 	 
-	 <?php $this->load->library('CuteEditor')?>
-	 <?php //echo site_url();?> 
-	 <?php //include "http://localhost/Library/Admin/cueditor/include_CuteEditor.php" ?>   
-   
-        <form id="form1" method="POST">   
-            <?php   
-                //Step 2: Create Editor object.   
-                $editor=new CuteEditor();   
-                $editor->Text="";    
-                //Step 3: Set a unique ID to Editor   
-                $editor->ID="Editor1";    
-                //Step 4: Render Editor   
-                $editor->Draw();   
-            ?>   
-        </form>   
+	 <?php
+	   
+	 ?>
   
 
 

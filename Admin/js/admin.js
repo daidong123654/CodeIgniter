@@ -332,6 +332,7 @@ $(document).ready(function() {
 	});
 	$('#pageNext').click(function(){
 	  page_next = $(this).find('a').attr('href');
+	  //alert('page_next');
 	  ajax(page_next);
 	});  
 	$('#pageFirst').click(function(){

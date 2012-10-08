@@ -36,7 +36,7 @@ class news extends CI_Controller
 	{
 		$this->load->helper('form');
 		$this->load->library('form_validation');
-		$this->load->library('CuteEditor');
+		
   
 		$data['title'] = 'Create a news item';
   
@@ -44,7 +44,7 @@ class news extends CI_Controller
 		$this->form_validation->set_rules('text', 'text', 'required');	  //设置必须是填写的
   
 		if ($this->form_validation->run() === FALSE)
-		{
+		{			 
 			$this->load->view('news/create');
     
 		}

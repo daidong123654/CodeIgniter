@@ -25,4 +25,5 @@ INSERT INTO `lib_admin_action` VALUES (21, 3, 'lib_news_del','删除新闻');
 INSERT INTO `lib_admin_action` VALUES (22, 3, 'lib_info_edit','编辑信息');
 
 INSERT INTO `lib_admin_action` VALUES (23, 3, 'books_cat_add','添加图书分类');
-INSERT INTO `lib_admin_action` VALUES (24, 3, 'books_cat_add','编辑图书分类');
+INSERT INTO `lib_admin_action` VALUES (24, 3, 'books_cat_edit','编辑图书分类');
+INSERT INTO `lib_admin_action` VALUES (25, 3, 'books_cat_del','删除图书分类');
