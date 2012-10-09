@@ -1,3 +1,12 @@
+<?php
+/*
+ * Created on 2012-10-8
+ *
+ * To change the template for this generated file go to
+ * Window - Preferences - PHPeclipse - PHP - Code Templates
+ */
+ //print_r($editing);
+?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -21,9 +30,9 @@ $(window).resize(function(){
 
 function delete_a(id)
 {
-	if (confirm('确定删除该管理员吗？')){
+	if (confirm('确定删除该出版社吗？')){
    
-	window.location.href= '<?php echo site_url('admin_user/delete/id')?>'+'/'+id;
+	window.location.href= '<?php echo site_url('ISBN/delete/id')?>'+'/'+id;
     }
 }
 
@@ -41,7 +50,7 @@ function delete_a(id)
  <a class="x-tab-right" href="#" onClick="return false;">
  <em class="x-tab-left">
  <span style="width: 130px;" class="x-tab-strip-inner">
- <span class="x-tab-strip-text">管理员列表</span>
+ <span class="x-tab-strip-text">出版社列表</span>
  </span>
  
  </em>
@@ -60,7 +69,7 @@ function delete_a(id)
 <!-- 工具栏 -->
    <div id="tool" class="x-panel-tbar x-panel-tbar-noheader"><div class="x-toolbar " style="border-left:0 solid #99bbe8;"><table cellspacing="0"><tbody><tr>
 	
-	 <td onClick="window.location.href='<?php echo site_url('admin_user/add')?>'"><table style="width: hidden;" class="button x-btn-wrap x-btn x-btn-text-icon " border="0" cellpadding="0" cellspacing="0" ><tbody><tr>
+	 <td onClick="window.location.href='<?php echo site_url('ISBN/add')?>'"><table style="width: hidden;" class="button x-btn-wrap x-btn x-btn-text-icon " border="0" cellpadding="0" cellspacing="0" ><tbody><tr>
 	 <td class="x-btn-left"><i>&nbsp;</i></td>
 	 <td class="x-btn-center" ><em ><button class="x-btn-text tb-addnew" type="button" >新增</button></em></td>
 	 <td class="x-btn-right"><i></i></td>
@@ -73,40 +82,34 @@ function delete_a(id)
 <table class="table table-striped " cellpadding="3" cellspacing="0" id="listTable" style="width:100%">
 <tr>
 <!--<button class="btn btn-large btn-block" type="button" >-->
-	<th>用户名</th>
-	<th>角色</th>
+	<th>id</th>
+	<th>ISBN 号码</th>
+	<th>出版社名称</th>
+	<th>图数量</th>
 	<th>Email地址</th>
-	<th>加入时间</th>
-	<th>最后登录时间</th>
+	<th>电话</th>
+	<th>创建时间</th>
 	<th>操作</th>
 </button>
 </tr>
 <?php
-    foreach ($admin_users as $value)
+    foreach ($editing as $value)
  	{
 	?>
 	<!--<button class="btn btn-large btn-block" type="button" >-->	
 		<tr>		
-			<td><?php echo $value['Mname'];?></td> 
-			<td>
-				<?php 
-				if(!$value['role_name'])
-					echo "非法管理员";
-				else
-					echo $value['role_name'].'  ';
-					echo $value['role_id'];
-				?>
-			</td>
-				
-				
-			<td><?php echo$value['Memail'];?></td>
-			<td><?php echo$value['CreateDate'];?>
+			<td><?php echo $value['id'];?></td> 			
+			<td><?php echo $value['ISBN'];?></td>			
+			<td><?php echo$value['ISBNname'];?></td>
+			<td><?php echo$value['booknum'];?></td>
+			<td>待定</td>
+			<td>待定</td>
 			<td>待定</td>
 			<td ><div class="x-grid3-cell-inner ">
-			 <a href='<?php echo site_url('admin_user/edit/id/'.$value['mID'])?>' style="text-decoration:none" alt='编辑' title='编辑'>
+			 <a href='<?php echo site_url('ISBN/edit/id/'.$value['id'])?>' style="text-decoration:none" alt='编辑' title='编辑'>
 			 <img src="<?php echo base_url()?>images/icon_edit.gif" border="0" width="16" height="16">
 			 </a>&nbsp;&nbsp&nbsp;&nbsp;
-			  <a href='#' onclick="delete_a('<?php echo $value['mID'];?>')" style="text-decoration:none" alt='删除' title='删除'>
+			  <a href='#' onclick="delete_a('<?php echo $value['id'];?>')" style="text-decoration:none" alt='删除' title='删除'>
 			 <img src="<?php echo base_url()?>images/icon_drop.gif" border="0" width="16" height="16">
 			 </a>
 			</div></td>		

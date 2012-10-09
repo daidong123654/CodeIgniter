@@ -34,7 +34,7 @@ $(document).ready(function() {
   $('#name').focus();
 
   var reAdd = function(){
-    window.location.href= "<?php echo site_url('product/edit')?>";
+    window.location.href= "<?php echo site_url('books/edit')?>";
   }
 
   var showTab = function(){

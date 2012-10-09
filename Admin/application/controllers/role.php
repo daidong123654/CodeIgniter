@@ -217,10 +217,11 @@
 		} 
 
 		$params = $this->uri->uri_to_assoc();
+		//show_message2(''.$params, 'role');
         if (isset($params['id']) && ($id = $params['id']) > 0)
         {
-
-			if($params['id'] == $this->session->userdata('role_id'))
+			show_message2('role_id'. $this->session->userdata(), 'role');
+			if($id == $this->session->userdata('role_id'))
 			{
                 return show_message2('你不能删除自己所属的角色!', 'role');
 			}
@@ -232,7 +233,7 @@
 			}
 
             $this->load->model('role_model');
-            if ($this->role_model->delete($id))
+            if ($this->role_model->delete($id))           
             {
                return show_message2('"角色(ID:'.$id.')" 已被删除!', 'role');
             } 

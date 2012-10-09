@@ -228,11 +228,11 @@ function listEdit(obj, field, id)
 			<th class="sort-numeric " >
 			<div class="x-grid3-hd-inner ">ID<img class="x-grid3-sort-icon" src="<?php echo base_url()?>images/s.gif"></div></th>
 
-			<th class="sort-alpha" >
-			<div class="x-grid3-hd-inner">书籍名称<img class="x-grid3-sort-icon" src="<?php echo base_url()?>images/s.gif"></div></th>
+			<th>
+			<div class="x-grid3-hd-inner"></div></th>
 
-			<th class="sort-alpha">
-			<div class="x-grid3-hd-inner">分类<img class="x-grid3-sort-icon" src="<?php echo base_url()?>images/s.gif"></div></th>
+			<th>
+			<div class="x-grid3-hd-inner">分类</div></th>
 
 
 			<th class="sort-numeric ">
@@ -250,7 +250,7 @@ function listEdit(obj, field, id)
 			<th >
 			<div class="x-grid3-hd-inner">书架号</div></th>
 
-			<th >
+			<th class="sort-numeric ">
 			<div class="x-grid3-hd-inner">出版日期<img class="x-grid3-sort-icon" src="<?php echo base_url()?>images/s.gif"></div></th >
 
 			<th >

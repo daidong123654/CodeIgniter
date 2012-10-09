@@ -44,7 +44,7 @@
 	{
 		$this->db->from('lib_publishing');        		
 	   
-        $query = $this->db->get();
+        $query = $this->db->get();      
        // print_r($query);
         $rows = array();
         foreach ($query->result_array() as $row)
@@ -58,9 +58,25 @@
             }        
             $rows[$row['id']] = $row;
         }
-        //print_r($rows);
         return $rows;
 	}
+	
+	//--------------------------------------
+	/**
+	 * 统计总数
+	 * 
+	 */
+	 function find_all_ISBN_count()
+	{
+		$this->db->from('lib_publishing');        		
+	   
+        $query = $this->db->get();
+        $totalISBNS = $query->num_rows();      
+       
+        return $totalISBNS;
+	}
+	 
+	 
 	
 	//---------------------------------------------------------------------------------------
 	/**
@@ -75,6 +91,7 @@
 	 	}
 	 	$query = $this->db->get_where('lib_publishing',array('id'=>$id));
 	 	$row = array();
+	 	//print_r($query);
 	 	foreach ($query->result_array() as $row)
         {   
         	$this->db->select('COUNT(DISTINCT(bookID)) as total');
@@ -85,6 +102,8 @@
                 $row['booknum'] = (int)$row_pro['total'];
             }
         }
+        //echo $id;
+        //print_r($row);
         return $row;	 	
 	 }
 	
@@ -100,7 +119,7 @@
 	 	$this->db->set('ISBN',$this->ISBN);
 	 	$this->db->set('ISBNname',$this->ISBNname);
 	 	$this->db->set('Email',$this->Email);
-	 	$this->db->set('phone',$this->pnone);
+	 	$this->db->set('phone',$this->phone);
 	 	$this->db->set('created_at',$this->created_at);
 	 	
 	 	$this->db->insert('lib_publishing');
@@ -114,7 +133,8 @@
 	  function delete($id)
 	  {
 	  	 //$this->db->where('id',$id);
-	  	 $this->db->delete('lib_publishing',array('id'=>$id));	  	 
+	  	 $this->db->delete('lib_publishing',array('id'=>$id));	  
+	  	 return true;	 
 	  }
 	  
 	  //------------------------------------------------------------------------------------------
@@ -128,7 +148,7 @@
 		 	$this->db->set('ISBN',$this->ISBN);
 		 	$this->db->set('ISBNname',$this->ISBNname);
 		 	$this->db->set('Email',$this->Email);
-		 	$this->db->set('phone',$this->pnone); 	
+		 	$this->db->set('phone',$this->phone); 	
 		 	
 		 	$this->db->where('id',$id);
 		 	$this->db->update('lib_publishing');
@@ -149,6 +169,25 @@
 	    	return $query->result_array();
 	    }
 	    
+	    //-----------------------------------------------------
+	    /**
+	     * 找到某一出版社下面的图书
+	     * 
+	     */
+	     function  find_ISBN_books($ISBNid)
+	     {
+	     	$query = $this->db->get_where('lib_bookinfo',array('ISBN'=>$ISBNid)); 	   		
+ 	   		$booknum = $query->num_rows();	   		
+ 	   		
+ 	   		foreach ($query->result_array() as $booksrow)
+	        {  
+	        	//print_r($booksrow);       	
+	           $books[$booksrow['bookID']] = $booksrow;	           
+	        }
+	        $books['booknum'] = $booknum;
+	        
+	        return $books;
+	     }
 	    
 	    
  }

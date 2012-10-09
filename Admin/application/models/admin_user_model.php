@@ -115,6 +115,7 @@
  	    	}
  	    	$this->db->set('role_id',$this->role_id);
  	    	$this->db->set('UpdateDate',$datetime);
+			$this->db->where('mID',$id);
  	    	return $this->db->update('lib_manager');
  	    }
  	    

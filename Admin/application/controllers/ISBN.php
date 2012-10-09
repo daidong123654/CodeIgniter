@@ -22,6 +22,8 @@
  		$this->load->model('ISBN_model');
  		$query = $this->ISBN_model->find_all_ISBN();
  		$data['editing'] = $query;
+ 		$totalISBNS = $this->ISBN_model->find_all_ISBN_count();
+ 		$data['totalISBNS'] = $totalISBNS;
  		$this->load->view('books/ISBN/list',$data);
  	}
  	
@@ -56,7 +58,8 @@
  	 	}
  	 	else
  	 	{
- 	 		$data['editing'] = array( 	 			
+ 	 		$data['editing'] = array( 	
+ 	 			'id'   => null, 			
  	 			'ISBN' =>  NULL,
  	 			'ISBNname' => null,
  	 			'phone'    => null,
@@ -78,7 +81,7 @@
  	  		//保存后并继续编辑信号
 		 	$re_edit = $this->input->post('re_edit');
 		 	
-		 	//图书id
+		 	//出版社id
 		 	$id = $this->input->post('id');	 	
 		 	//基本信息
 		 	
@@ -97,9 +100,8 @@
  	 		{
  	 			$datetime = date('Y-m-d H:i:s');
  	 			//把数据提交给模型  
- 	 			$this->load->model('ISBN_model');
+ 	 			$this->load->model('ISBN_model'); 	 			
  	 			
- 	 			$this->ISBN_model->id = $id;
  	 			$this->ISBN_model->ISBN = $ISBN;
  	 			$this->ISBN_model->ISBNname = $ISBNname;
  	 			$this->ISBN_model->Email = $Email;
@@ -126,17 +128,17 @@
  	 			//新增
  	 			else
  	 			{
- 	 				$this->ISBN_model->add();
+ 	 				$this->ISBN_model->create();
  	 				$newly_one = $this->ISBN_model->get_newly_one();
  	 				if($re_edit)
 			 	 	{
 			 	 		//echo $bookID;
-			 	 		show_message2('"图书(ID:'.$id.')" 已添加!', 'ISBN/edit/id/'.$newly_one['id']);
+			 	 		show_message2('"出版社(ID:'.$id.')" 已添加!', 'ISBN/edit/id/'.$newly_one['id']);
 			 	 	}
 			 	 	//返回列表
 			 	 	else
 			 	 	{
-			 	 		show_message2('"图书(ID:'.$id.')" 已添加!', 'ISBN');
+			 	 		show_message2('"出版社(ID:'.$id.')" 已添加!', 'ISBN');
 			 	 	}	
  	 			} 			
  	 		}
@@ -160,14 +162,14 @@
  	   		 	$id = $params['id'];
  	   		 	$this->load->model('ISBN_model');
  	   		 	$row = $this->ISBN_model->load($id);
- 	   		 	//$this->load->model('books_model');
- 	   		 	$query = $this->db->get_where('lib_bookinfo',array('ISBN'=>$row['ISBN']));
- 	   		 	//print_r($query);
- 	   		 	$booknum = $query->num_rows();
- 	   		 	//print_r($booknum);
- 	   		 	if($booknum > 0)
+
+ 	   		 	//如果该出版社下面有书就不能删除
+ 	   		 	$this->load->model('ISBN_model');
+ 	   		 	$books = $this->ISBN_model->find_ISBN_books($id);
+ 	   		 	
+ 	   		 	if($books['booknum'] > 0)
  	   		 	{
- 	   		 		show_message2($row['ISBNname'].' 有书！您不能删除!','ISBN');
+ 	   		 		show_message2('出版社'.$row['ISBNname'].' 有书！您不能删除!','ISBN');
  	   		 	}
  	   		 	else if($this->ISBN_model->delete($id))
  	   		 	{
@@ -175,10 +177,25 @@
  	   		 	}
  	   		 	else
  	   		 	{
- 	   		 		//return show_message2('无效ID:'.$id, 'ISBN');
+ 	   		 		return show_message2('无效ID:'.$id, 'ISBN');
  	   		 	}
  	   		 }
  	   }
+ 	   
+ 	   // --------------------------------------------------------------------
+	    /**
+		 * 设置表单数据规则
+		 *
+		 */	
+		function set_save_form_rules()
+	    {
+	        $rules['ISBN'] = 'required|max_lenth[30]';
+	        $rules['ISBNname']   = 'required|max_length[200]';	
+	        $rules['Emain'] = 'valid_email';
+	        $rules['phone'] = 'numeric';   
+	               
+			$this->form_validation->set_rules($rules);		
+	    } 
  	 
  }
  

@@ -315,10 +315,6 @@
         	}        	    	
  	   }
  	   
- 	   
- 	   
- 	   
- 	   
  	    
  	    //-----------------------------------------------------------------------------------------------------
  	    /**
@@ -429,18 +425,9 @@
  	       */
  	       function count_books($options = array(),$is_delete=0)
  	       {
- 	       	//SELECT COUNT(DISTINCT column_name) FROM table_name !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
- 	       	//$this->db->select('COUNT(DISTINCT(lib_bookinfo.bookID)) as total ');
- 	       	$query = $this->find_books_count($options,$is_delete);
- 	       	//print_r($query);
- 	       	$total = $query->num_rows();
- 	       	//////echo '<br/>total line 403 :'.$total.'<br/>';
- 	       	/*if ($row = $query->row_array())
- 	       	{
- 	       		//print_r($row);
-            	$total = (int)$row['total'];
-        	}*/
-        	
+ 	       	
+ 	       	$query = $this->find_books_count($options,$is_delete); 	       
+ 	       	$total = $query->num_rows(); 	       	
         	return $total;
  	       }
 		   

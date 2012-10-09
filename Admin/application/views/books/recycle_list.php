@@ -153,8 +153,8 @@ function listEdit(obj, field, id)
   <li class="x-tab-strip-active" >
   <a class="x-tab-right" href="#" onClick="return false;">
   <em class="x-tab-left">
-  <span style="width: 130px;" class="x-tab-strip-inner">
-  <span class="x-tab-strip-text">删除的书籍列表</span>
+  <span style="width: 210px;" class="x-tab-strip-inner">
+  <span class="x-tab-strip-text">删除的书籍列表(搜索暂时不可用)</span>
   </span>
   </em>
   </a>

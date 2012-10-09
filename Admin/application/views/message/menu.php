@@ -1,6 +1,6 @@
 <?php
 /*
- * Created on 2012-9-26
+ * Created on 2012-10-9
  *
  * To change the template for this generated file go to
  * Window - Preferences - PHPeclipse - PHP - Code Templates
@@ -25,7 +25,7 @@
 
   <div id="menu-head" class="x-panel-header">
     <a href="#" class="toggleMenu"><div  class="x-tool x-tool-toggle x-tool-collapse-west" > </div></a>
-    <span class="" >新  闻</span>
+    <span class="" >读者</span>
   </div>
 
   <div  class="x-panel-bwrap ">
@@ -38,7 +38,7 @@
 			<table  cellspacing="0" cellpadding="0" border="0" style="width: auto;"><tbody><tr>
 			<td class="x-btn-left"></td>
 			<td class="x-btn-center">
-			<em ><a  href="<?php echo site_url('news/create')?>" target="main-frame" ><button  class="x-btn-text add-feed" type="button" onclick="parent.document.getElementById('main-frame').src='<?php echo site_url('news/create');?>'">添加新闻</button></a></em>
+			<em ><a  href="<?php echo site_url('reader/add')?>" target="main-frame" ><button  class="x-btn-text add-feed" type="button" onclick="parent.document.getElementById('main-frame').src='<?php echo site_url('reader/add');?>'">添加读者</button></a></em>
 			</td>
 			<td class="x-btn-right"><i> </i></td>
 			</tr></tbody></table>
@@ -53,22 +53,22 @@
 	<div class="x-tree-root-node">
     <li class="x-tree-node">
 	
-	  <!-- 新闻管理 -->
+	  <!-- 读者管理 -->
 	  <div  class="x-tree-node-el  feeds-node" >
 		  <img  class="x-tree-ec-icon x-tree-elbow-end-minus" src="<?php echo base_url()?>images/s.gif" title="关闭">
 		  <img class="x-tree-node-icon"  src="<?php echo base_url()?>images/s.gif"/>
-		  <span >新闻管理</span>
+		  <span >读者管理</span>
 	  </div>
      
 	  <ul  style="" class="x-tree-node-ct">
-	  <li class="x-tree-node"><div  class="x-tree-node-el x-tree-node-leaf feed x-tree-selected " ><span class="x-tree-node-indent"><img class="x-tree-icon" src="<?php echo base_url()?>images/s.gif"/></span><img  class="x-tree-node-icon feed-icon" src="<?php echo base_url()?>images/s.gif"/><a href="<?php echo site_url('news')?>" target="main-frame"><span >新闻列表</span></a></div></li>
+	  <li class="x-tree-node"><div  class="x-tree-node-el x-tree-node-leaf feed x-tree-selected " ><span class="x-tree-node-indent"><img class="x-tree-icon" src="<?php echo base_url()?>images/s.gif"/></span><img  class="x-tree-node-icon feed-icon" src="<?php echo base_url()?>images/s.gif"/><a href="<?php echo site_url('reader')?>" target="main-frame"><span >读者列表</span></a></div></li>
 
-	  <li class="x-tree-node"><div  class="x-tree-node-el x-tree-node-leaf feed" ><span class="x-tree-node-indent"><img class="x-tree-icon" src="<?php echo base_url()?>images/s.gif"/></span><img  class="x-tree-node-icon add-feed" src="<?php echo base_url()?>images/s.gif"/><a  href="<?php echo site_url('news/create')?>" target="main-frame" ><span >添加新闻</span></a></div></li>
-	 
-	 
-	  <li class="x-tree-node"><div  class="x-tree-node-el x-tree-node-leaf feed" ><span class="x-tree-node-indent"><img class="x-tree-icon" src="<?php echo base_url()?>images/s.gif"/></span><img  class="x-tree-node-icon feed-icon" src="<?php echo base_url()?>images/rss-icon.gif"/><a  href="<?php echo site_url('news/recycle')?>" target="main-frame" ><span >回收站</span></a></div></li>      
+	  <li class="x-tree-node"><div  class="x-tree-node-el x-tree-node-leaf feed" ><span class="x-tree-node-indent"><img class="x-tree-icon" src="<?php echo base_url()?>images/s.gif"/></span><img  class="x-tree-node-icon add-feed" src="<?php echo base_url()?>images/s.gif"/><a  href="<?php echo site_url('reader/add')?>" target="main-frame" ><span >添加读者</span></a></div></li>  
+	       
 	  </ul>	  
     </li>
+	
+	
     </div>
     </ul>
     </div>

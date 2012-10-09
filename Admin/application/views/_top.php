@@ -61,7 +61,7 @@ $(document).ready(function() {
 	<ul>
 	<li><a class="tab-front"href="<?php echo site_url('books')?>" target="main-frame" onclick="changeMenu('<?php echo site_url('frameset/menu/books');?>')">图书管理</a></li>
 	
-	<li><a href="<?php echo site_url('readers')?>" target="main-frame" onclick="changeMenu('<?php echo site_url('frameset/menu/readers');?>')">读者管理</a></li>	
+	<li><a href="<?php echo site_url('reader')?>" target="main-frame" onclick="changeMenu('<?php echo site_url('frameset/menu/reader');?>')">读者管理</a></li>	
 	<li><a href="<?php echo site_url('news')?>" target="main-frame" onclick="changeMenu('<?php echo site_url('frameset/menu/news');?>')">新闻管理</a></li>
 	<li><a href="<?php echo site_url('message')?>" target="main-frame" onclick="changeMenu('<?php echo site_url('frameset/menu/message');?>')">留言管理</a></li>
 	<li><a href="<?php echo site_url('borrow')?>" target="main-frame" onclick="changeMenu('<?php echo site_url('frameset/menu/borrow');?>')">借阅管理</a></li>

@@ -68,7 +68,7 @@ class Category extends CI_Controller
         
 		// 不是叶分类的所有分类结果集
 		$this->load->model('category_model');
-		$data['category_not_leaf'] = $this->category_model->find_not_leaf();
+		$data['category_not_leaf'] = $this->category_model->find_all_categorys();
 		
 		// ajax 
 		if ($search)
@@ -285,15 +285,16 @@ class Category extends CI_Controller
             $cat = $this->category_model->load($id);
 			$this->load->model('books_model');
             $books = $this->books_model->check_books_by_cat($id);
-			if(!$cat['is_leaf'] || !empty($books['id']))
+			if(!$cat['is_leaf'] || !empty($books['bookID']))
 			{
 		        //echo -1;
                  show_message2($cat['name'].' 不是末级分类或者此分类下还存在有图书,您不能删除!','category');
 			}
             else if ($this->category_model->delete($id))
+             //else if (1)
 			{
 				//echo $id;
-                show_message2('"分类(ID:'.$id.')" 已被删除!', 'category');
+                show_message2('"分类(ID:'.$id.$books.')" 已被删除!', 'category');
             } else 
 			{
 				//return false;

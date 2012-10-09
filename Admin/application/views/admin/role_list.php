@@ -90,7 +90,15 @@ function delete_a(id)
 		 <tr class="x-grid3-header">
 			
 			<th class="" >
+			<div class="x-grid3-hd-inner">id<img class="x-grid3-sort-icon" src="<?php echo base_url()?>images/s.gif"></div></th>
+		
+			
+			
+			<th class="" >
 			<div class="x-grid3-hd-inner">角色名称<img class="x-grid3-sort-icon" src="<?php echo base_url()?>images/s.gif"></div></th>
+			
+			<th class="" >
+			<div class="x-grid3-hd-inner">权限<img class="x-grid3-sort-icon" src="<?php echo base_url()?>images/s.gif"></div></th>
 		
 			<th class="" >
 			<div class="x-grid3-hd-inner">加入时间<img class="x-grid3-sort-icon" src="<?php echo base_url()?>images/s.gif"></div></th>
@@ -99,9 +107,12 @@ function delete_a(id)
 			<div class="x-grid3-hd-inner">操作</div></th>
 		 </tr>
      
-		 <?php foreach ($roles as $value){ ?>
+		 <?php foreach ($roles as $value){ 
+		 //print_r($value)?>
 		 <tr class="x-grid3-row " >
+		 	<td ><div class="x-grid3-cell-inner "><?php echo $value['id'] ?></div></td>
 			<td ><div class="x-grid3-cell-inner "><?php echo $value['name'] ?></div></td>
+			<td ><div class="x-grid3-cell-inner "> 太长了</div></td>
 			<td><div class="x-grid3-cell-inner "><?php echo $value['created_at'] ?></div></td>
 			<td ><div class="x-grid3-cell-inner ">			
 			 <a href='<?php echo site_url('role/edit/id/'.$value['id'])?>' style="text-decoration:none" alt='编辑' title='编辑'>

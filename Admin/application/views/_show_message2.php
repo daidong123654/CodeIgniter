@@ -21,7 +21,7 @@
             <li><a href="<?php echo site_url($goto)?>">如果您的浏览器不支持自动跳转,请点击这里.</a></li>
         </ul>
       </div>
-      <div id="messagebox-bottom"><a href="javascript: window.history.go(-1);">返回</a> | <a href="<?php echo site_url('category')?>">控制面板</a> </div>
+      <div id="messagebox-bottom"><a href="javascript: window.history.go(-1);">返回</a> | <a href="javascript: window.history.go(-1);">控制面板</a> </div>
     </div>
 </div>
 </body>

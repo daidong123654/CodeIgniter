@@ -63,8 +63,21 @@
 	  <ul  style="" class="x-tree-node-ct">
 	  <li class="x-tree-node"><div  class="x-tree-node-el x-tree-node-leaf feed x-tree-selected " ><span class="x-tree-node-indent"><img class="x-tree-icon" src="<?php echo base_url()?>images/s.gif"/></span><img  class="x-tree-node-icon feed-icon" src="<?php echo base_url()?>images/s.gif"/><a href="<?php echo site_url('admin_user')?>" target="main-frame"><span >管理员列表</span></a></div></li>
 
-	  <li class="x-tree-node"><div  class="x-tree-node-el x-tree-node-leaf feed" ><span class="x-tree-node-indent"><img class="x-tree-icon" src="<?php echo base_url()?>images/s.gif"/></span><img  class="x-tree-node-icon add-feed" src="<?php echo base_url()?>images/s.gif"/><a  href="<?php echo site_url('admin_user/add')?>" target="main-frame" ><span >添加管理员</span></a></div></li>
-	  
+	  <li class="x-tree-node"><div  class="x-tree-node-el x-tree-node-leaf feed" ><span class="x-tree-node-indent"><img class="x-tree-icon" src="<?php echo base_url()?>images/s.gif"/></span><img  class="x-tree-node-icon add-feed" src="<?php echo base_url()?>images/s.gif"/><a  href="<?php echo site_url('admin_user/add')?>" target="main-frame" ><span >添加管理员</span></a></div></li>  
+	       
+	  </ul>	  
+    </li>
+	
+	<li class="x-tree-node">
+	
+	  <!-- 管理员管理 -->
+	  <div  class="x-tree-node-el  feeds-node" >
+		  <img  class="x-tree-ec-icon x-tree-elbow-end-minus" src="<?php echo base_url()?>images/s.gif" title="关闭">
+		  <img class="x-tree-node-icon"  src="<?php echo base_url()?>images/s.gif"/>
+		  <span >角色管理</span>
+	  </div>
+     
+	  <ul  style="" class="x-tree-node-ct">	  
 	  <li class="x-tree-node"><div  class="x-tree-node-el x-tree-node-leaf feed" ><span class="x-tree-node-indent"><img class="x-tree-icon" src="<?php echo base_url()?>images/s.gif"/></span><img  class="x-tree-node-icon feed-icon" src="<?php echo base_url()?>images/rss_search2.png"/><a href="<?php echo site_url('role')?>" target="main-frame"><span >角色列表</span></a></div></li>
 	  
 	  <li class="x-tree-node"><div  class="x-tree-node-el x-tree-node-leaf feed" ><span class="x-tree-node-indent"><img class="x-tree-icon" src="<?php echo base_url()?>images/s.gif"/></span><img  class="x-tree-node-icon add-feed" src="<?php echo base_url()?>images/rss_role.gif"/><a  href="<?php echo site_url('role/add')?>" target="main-frame" ><span >添加角色</span></a></div></li>     

@@ -59,7 +59,7 @@
  	   			$users = array(
  	   				'name'         => $user['Mname'],
  	   				'id'           => $user['mID'],
- 	   				'role_id'      => $user['PowerLevel'],
+ 	   				'role_id'      => $user['role_id'],
  	   				'action_list'  => $user['action_list'],
  	   				'logged_in'    => TRUE
  	   			);
