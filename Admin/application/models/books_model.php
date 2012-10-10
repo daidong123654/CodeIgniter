@@ -188,7 +188,7 @@
  	   {
  	   		if(!is_array($options))
  	   	 	{
- 	   	 		////echo '没有设置查询规则books_model line 229';
+ 	   	 		//echo '没有设置查询规则books_model line 229';
  	   	 		return array();
  	   	 	}
  	   	 	if ($count)
@@ -202,7 +202,7 @@
         		//查询方式不为空且关键字不为空
         		if($options['selecttype']!='' && $options['keywords'] != '')
         		{
-        			//////echo '221';
+        			//echo '221';
 	        		$selecttype = $options['selecttype'];
 	        		$keywords = $options['keywords'];
 	        		$sql = "select * from lib_bookinfo where $selecttype = '$keywords' and isdelete ='$is_delete'".$limit;
@@ -312,7 +312,8 @@
 	        	//print_r($rows);
 	        	//$rows['sql'] = $sql;
 	        	return $rows;  
-        	}        	    	
+        	} 
+			return $rows;
  	   }
  	   
  	    

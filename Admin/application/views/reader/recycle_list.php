@@ -1,6 +1,6 @@
-﻿<?php
+<?php
 /*
- * Created on 2012-10-9
+ * Created on 2012-10-10
  *
  * To change the template for this generated file go to
  * Window - Preferences - PHPeclipse - PHP - Code Templates
@@ -28,8 +28,15 @@ $(window).resize(function(){
 
 function delete_c(id)
 {
-	if (confirm('确定将该读者放入回收站吗？')){   
-	window.location.href= '<?php echo site_url('reader/in_recycle/id')?>'+'/'+id;
+	if (confirm('确定将该读者永久删除吗？')){   
+	window.location.href= '<?php echo site_url('reader/delete/id')?>'+'/'+id;
+    }
+}
+
+function out_c(id)
+{
+	if (confirm('确定将该读者还原吗？')){   
+	window.location.href= '<?php echo site_url('reader/out_recycle/id')?>'+'/'+id;
     }
 }
  //--> 
@@ -47,7 +54,7 @@ function delete_c(id)
   <a class="x-tab-right" href="#" onClick="return false;">
   <em class="x-tab-left">
   <span style="width: 130px;" class="x-tab-strip-inner">
-  <span class="x-tab-strip-text">读者列表</span>
+  <span class="x-tab-strip-text">回收站读者列表</span>
   </span>
   </em>
   </a>
@@ -91,7 +98,7 @@ function delete_c(id)
 			<div class="x-grid3-hd-inner">ID<img class="x-grid3-sort-icon" src="<?php echo base_url()?>images/s.gif"></div></th>
 
 			<th class="" >
-			<div class="x-grid3-hd-inner">用户名<img class="x-grid3-sort-icon" src="<?php echo base_url()?>images/s.gif"></div></th>
+			<div class="x-grid3-hd-inner">姓名<img class="x-grid3-sort-icon" src="<?php echo base_url()?>images/s.gif"></div></th>
 		
 			<th class="" style="border-right:0 solid #99bbe8;">
 			<div class="x-grid3-hd-inner">邮箱</div></th>
@@ -125,10 +132,12 @@ function delete_c(id)
 			<td ><div class="x-grid3-cell-inner ">			 
 			 <a href='<?php echo site_url('reader/edit/id/'.$value['id'])?>' style="text-decoration:none" alt='编辑' title='编辑'>
 			 <img src="<?php echo base_url()?>images/icon_edit.gif" border="0" width="16" height="16">
-			 </a>&nbsp;&nbsp;
-			 
-			 <a href='#' onclick="delete_c('<?php echo $value['id'];?>')" style="text-decoration:none" alt='放入回收站' title='放入回收站'>
-			 <img src="<?php echo base_url()?>images/icon.jpg" border="0" width="16" height="16">
+			 </a>&nbsp;&nbsp;			
+			 <a href='#' onclick="out_c('<?php echo $value['id'];?>')" style="text-decoration:none" alt='还原' title='还原'>
+			 <img src="<?php echo base_url()?>images/book_open.gif" border="0" width="16" height="16">
+			 </a>&nbsp;&nbsp;			
+			 <a href='#' onclick="delete_c('<?php echo $value['id'];?>')" style="text-decoration:none" alt='永久删除' title='永久删除'>
+			 <img src="<?php echo base_url()?>images/icon_drop.gif" border="0" width="16" height="16">
 			 </a>
 			</div></td>
 		  </tr>
@@ -138,7 +147,7 @@ function delete_c(id)
 		</div>
         <!-- 分页显示 -->
 		<?php
-		//print_r($readers);
+		//echo $page_next;
 		$data['total_pages'] = $total_pages;
 		$data['page_first'] = $page_first;
 		$data['page_prev'] = $page_prev;

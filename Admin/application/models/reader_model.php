@@ -46,10 +46,15 @@
  	 	if($row = $query->row_array())
  	 	{
  	 		//return $row;
- 	 		$type = $this->db->get_where('libreadertype',array('id'=>$row['typeid']));
+ 	 		$type = $this->db->get_where('lib_readertype',array('id'=>$row['typeid']));
  	 		$temp = $type->result_array();
- 	 		$row['type_name'] = $temp['name'];
- 	 		$row['numberofdays'] = $temp['numberofdays'];
+ 	 		//print_r($temp);
+ 	 		foreach($temp as $name => $value)
+ 	 		{
+ 	 			$row['type_name'] = $value['name'];
+ 	 			$row['numberofdays'] = $value['numberdays'];
+ 	 		}
+ 	 		
  	 		
  	 		return $row;
  	 	}
@@ -83,9 +88,15 @@
  	  /**
  	   * 结果集
  	   * 
- 	   */
- 	   function find_all_readers()
+ 	  
+ 	   function find_all_readers($count=20,$offset=0)
  	   {
+ 	   	
+ 	   		if($count)
+ 	   		{
+ 	   			$this->db->limit((int)$count,(int)$offset);
+ 	   		}
+ 	   		$this->db->where('isdelete','0'); 	   		
  	   		$query = $this->db->get('lib_reader');
  	   		$rows = array();
  	   		
@@ -106,7 +117,70 @@
  	   			
  	   			$rows[$row['id']] = $row;
  	   		}
- 	   }
+ 	   		return $rows;
+ 	   } */
+ 	   
+ 	   function find_readers($options = array(), $count=20, $offset=0,$isdelete='0')
+		{
+			if (!is_array($options))
+			{
+	            return array();
+	        }	
+	        if ($count)
+	        {
+	            $this->db->limit((int)$count, (int)$offset);
+	        }	          
+	             	
+	        $query = $this->_query_readers($options,$isdelete);	
+	        $rows = array();
+	        //print_r($rows);
+	        foreach($query->result_array() as $row)
+ 	   		{
+ 	   			$query1 = $this->db->get_where('lib_readertype',array('id'=>$row['typeid']));
+ 	   			$row1 = $query1->row_array();
+ 	   			
+ 	   			if(!empty($row1))
+ 	   			{
+ 	   				$row['type_name'] = $row1['name'];
+ 	   				$row['numberofdays'] = $row1['numberdays'];
+ 	   			}
+ 	   			else
+ 	   			{
+ 	   				$row['type_name'] = 0;
+ 	   				$row['numberofdays'] = 0;
+ 	   			}
+ 	   			
+ 	   			$rows[$row['id']] = $row;
+ 	   		}
+ 	   		return $rows;
+		}
+		
+		/**
+		 * 私有函数
+		 *
+		 *
+		 */
+		function _query_readers($options = null,$isdelete)
+	    {
+	        $this->db->from('lib_reader');	        
+	        $this->db->where('isdelete',$isdelete);	        
+	        
+			if (!empty($options['conditions']))
+			{
+	            $this->db->where($options['conditions']);
+	        }
+	        
+	        if (isset($options['order']))
+	        {
+	            $this->db->order_by($options['order']);
+	        } 
+	        else
+	        {
+	            $this->db->order_by('id DESC');
+	        }
+	
+	        return $this->db->get();
+	    }
  	   
  	   //--------------------------------------------------------------------------------------
  	   /**
@@ -132,7 +206,7 @@
 	 	  	$this->db->set('sex',$this->sex);
 	 	  	$this->db->set('age',$this->age);
 	 	  	$this->db->set('birthday',$this->birthday);
-	 	  	$this->db->set('teltphone',$this->telephone);
+	 	  	$this->db->set('telephone',$this->telephone);
 	 	  	$this->db->set('remark',$this->remark);
 	 	  	$this->db->set('credit',$this->credit);
 	 	  	
@@ -145,9 +219,17 @@
  	     *总数 
  	     * 
  	     */
- 	     function total_reader()
+ 	     function total_reader($options,$isdelete)
  	     {
- 	     	return $this->db->count_all_results('lib_reader');
+ 	     	//$this->db->where('isdelete','0');
+ 	     	$this->db->select('COUNT(DISTINCT(id)) as total');
+ 	     	$query = $this->_query_readers($options,$isdelete);
+ 	     	$total = 0;
+	        if ($row = $query->row_array())
+	        {
+	            $total = (int)$row['total'];
+	        }
+ 	     	return $total;
  	     }
  	     
  	     //--------------------------------------------------------------------------------------
@@ -160,6 +242,30 @@
  	      	$this->db->where('id',$id);
  	      	return $this->db->delete('lib_reader');
  	      }
+ 	      
+ 	       //--------------------------------------------------------------------------------------
+ 	     /**
+ 	      * 回收
+ 	      * 
+ 	      */
+ 	      function in_recycle($id)
+ 	      {
+ 	      	$this->db->where('id',$id);
+ 	      	$this->db->set('isdelete','1');
+ 	      	return $this->db->update('lib_reader');
+ 	      }
+ 	      
+ 	       //--------------------------------------------------------------------------------------
+	 	     /**
+	 	      * 还原
+	 	      * 
+	 	      */
+	 	      function out_recycle($id)
+	 	      {
+	 	      	$this->db->where('id',$id);
+	 	      	$this->db->set('isdelete','0');
+	 	      	return $this->db->update('lib_reader');
+	 	      }
  	      
  	      //----------------------------------------------------------------------------------------
  	      /**
@@ -176,44 +282,46 @@
  	       		return $query->result_array(); 	       		
  	       }
  	       
- 	       //--------------------------------------------------------------------------------
- 	       /**
- 	        * 根据用户名找到用户
- 	        * 
- 	        */
- 	        function find_reader_by_name($name)
- 	        {
- 	        	if(!$name)
-		 	 	{
-		 	 		return array();
-		 	 	}		 	 	
-		 	 	$query = $this->db->get_where('lib_reader',array('name'=>$name));
-		 	 	
-		 	 	if($row = $query->row_array())
-		 	 	{
-		 	 		//return $row;
-		 	 		$type = $this->db->get_where('libreadertype',array('id'=>$row['typeid']));
-		 	 		$temp = $type->result_array();
-		 	 		$row['type_name'] = $temp['name'];
-		 	 		$row['numberofdays'] = $temp['numberofdays'];
-		 	 		
-		 	 		return $row;
-		 	 	}
-		 	 	else
-		 	 	{
-		 	 		return array();
-		 	 	}
- 	        }
+ 	      
  	        
  	        //--------------------------
  	        /**
  	         * search
  	         * 
- 	         */
- 	         function find_reader($options = array(),$count = 20,$offset = 0)
+ 	         
+ 	         function find_reader($keywords)
  	         {
+ 	         	if(!is_array($keywords))
+ 	         	{
+ 	         		return array();
+ 	         	} 	         	
+ 	         	$sql = "select * from lib_reader where name = '$keywords' or Email = '$keywords'";
+ 	         	$query = $this->db->query($sql);
+ 	         	$rows = array();
  	         	
- 	         }
+ 	         	if($query)
+ 	         	{
+ 	         		foreach($query->result_array() as $row)
+ 	         		{
+ 	         			$query1 = $this->db->get_where('lib_readertype',array('id'=>$row['typeid']));
+		 	   			$row1 = $query1->row_array();
+		 	   			if(!empty($row1))
+		 	   			{
+		 	   				$row['type_name'] = $row1['name'];
+		 	   				$row['numberofdays'] = $row1['numberofdays'];
+		 	   			}
+		 	   			else
+		 	   			{
+		 	   				$row['type_name'] = 0;
+		 	   				$row['numberofdays'] = 0;
+		 	   			}
+		 	   			
+		 	   			$rows[$row['id']] = $row;
+ 	         		}
+ 	         		return $rows;
+ 	         	}
+ 	         	return $rows;
+ 	         }*/
  	
  }
 ?>
