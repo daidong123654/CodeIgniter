@@ -6,15 +6,7 @@
  * Window - Preferences - PHPeclipse - PHP - Code Templates
  */
 ?>
-<?php
-/*
- * Created on 2012-9-28
- *
- * To change the template for this generated file go to
- * Window - Preferences - PHPeclipse - PHP - Code Templates
- */
- 
-?>
+
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="utf-8">
 <head>

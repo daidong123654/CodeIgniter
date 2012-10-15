@@ -12,6 +12,6 @@
      //<p> <strong>  <?php //echo $news_item['text'] ?></strong></p>
     //</div>
 	<?php //echo "index.php line 7".$news_item['slug'] ?>
-    <p><a href="http://localhost/Library/CodeIgniter_2.1.2/index.php/news/<?php //echo $news_item['slug'] ?>">View article</a></p>
+    <p><a href="http://localhost/Library/CodeIgniter_2.1.2/index.php/news/<?php //echo $news_item['id'] ?>">View article</a></p>
 -->
 <?php endforeach ?>

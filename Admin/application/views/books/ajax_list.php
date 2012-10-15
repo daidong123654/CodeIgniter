@@ -11,21 +11,27 @@
 	  <div class="list-div " id="listDiv" style="margin-bottom:20px;">	      
 	  <table cellpadding="3" cellspacing="0" id="listTable" >		          
 	  <tbody>
-	  <?php  foreach ($books as $value){ ?>
-	  <tr class="x-grid3-row " >
+	   <?php  
+		  foreach ($books as $value)
+		  { 
+		  ?>
+		  <tr class="x-grid3-row " >
 			<td><div class="x-grid3-cell-inner "><?php echo $value['bookID'] ?></div></td>
-			<td ><div class="x-grid3-cell-inner " ><span onclick="listEdit(this, 'bookname', <?php echo $value['bookID'] ?>)"><?php echo $value['bookname']; ?></span></div></td>
-			
+			<td ><div class="x-grid3-cell-inner " ><span onclick="listEdit(this, 'name', <?php echo $value['bookID'] ?>)"><?php echo $value['bookname']; ?></span></div></td>	
 			<td ><div class="x-grid3-cell-inner "><?php echo $value['booktypename'] ?></div></td>
-			<td ><div class="x-grid3-cell-inner "><span onclick="listEdit(this, 'price', <?php echo $value['bookID'] ?>)" ><?php echo $value['price'] ?></span></div></td>
-			<td ><div class="x-grid3-cell-inner "><span onclick="listEdit(this, 'stock', <?php echo $value['bookID'] ?>)"><?php echo $value['storge'] ?></span></div></td>
-			<td ><div class="x-grid3-cell-inner ">
+			<td ><div class="x-grid3-cell-inner "><?php echo $value['price'] ?></div></td>
+			<td ><div class="x-grid3-cell-inner "><?php echo $value['storge'] ?></div></td>
+			<td ><div class="x-grid3-cell-inner "><?php echo $value['author'] ?></div></td>
+			<td ><div class="x-grid3-cell-inner "><?php echo $value['publisher'] ?></div></td>
+			<td ><div class="x-grid3-cell-inner "><?php echo $value['bookrack'] ?></div></td>
+			<td ><div class="x-grid3-cell-inner "><?php echo $value['publishtime'] ?></div></td>
+			<td ><div class="x-grid3-cell-inner "><?php echo $value['barcode'] ?></div></td>
 			
 			<td ><div class="x-grid3-cell-inner ">
-			 <a href='<?php echo site_url('product')?>' style="text-decoration:none" alt='浏览' title='浏览'>
+			 <a href='<?php echo site_url('books')?>' style="text-decoration:none" alt='浏览' title='浏览'>
 			 <img src="<?php echo base_url()?>images/icon_view.gif" border="0" width="16" height="16">
 			 </a>&nbsp;&nbsp;
-			 <a href='<?php echo site_url('product/edit/id/'.$value['id'])?>' style="text-decoration:none" alt='编辑' title='编辑'>
+			 <a href='<?php echo site_url('books/edit/bookID/'.$value['bookID'])?>' style="text-decoration:none" alt='编辑' title='编辑'>
 			 <img src="<?php echo base_url()?>images/icon_edit.gif" border="0" width="16" height="16">
 			 </a>&nbsp;&nbsp;
 			 <a href='#' id="in_recycle" style="text-decoration:none"  title='放入回收站' onclick="in_recycle('<?php echo $value['bookID']?>',this)">
@@ -33,7 +39,9 @@
 			 </a>
 			</div></td>
 		  </tr>
-	  <?php  } ?>
+		  <?php
+		  } 
+		  ?>
 	</tbody></table>
 	</div>
 

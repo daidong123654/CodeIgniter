@@ -48,8 +48,8 @@ if (window.top != window)
 </div>
 
 <div style="margin-top:15px;" id="frame-body">
-	<iframe scrolling="no" frameborder='1' height="93%" width="15%" name="menu-frame"   id="menu-frame"   src="<?php echo site_url('frameset/menu/books') ?>"></iframe>
-	<iframe scrolling="no" frameborder='1' height="93%" width="81%"   name="main-frame" id="main-frame"  src="<?php echo site_url('books') ?>"></iframe>
+	<iframe scrolling="no" frameborder='1' height="93%" width="14%" name="menu-frame"   id="menu-frame"   src="<?php echo site_url('frameset/menu/books') ?>"></iframe>
+	<iframe scrolling="no" frameborder='1' height="93%" width="84%"   name="main-frame" id="main-frame"  src="<?php echo site_url('books') ?>"></iframe>
 </div>
 </body>
 </html>

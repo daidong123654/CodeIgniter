@@ -224,10 +224,9 @@
 	        	else
 	        	{
 	        		echo '查询条件错误 line 240';
-	        	}
-        			
-        		
+	        	}        		
         	}
+        	
         	//有查询图书类型（分为只有图书类型和图书类型+关键字）
         	else if($options['booktype']!=='')
         	{
@@ -457,6 +456,25 @@
         $query = $this->db->get_where('lib_bookinfo',array('booktype' => $booktype));
 		return $query->row_array();
 	}
+	
+	//----------------------------------------------------------
+	/**
+	 * 查询图书剩余数目
+	 */
+	 function find_books_storge($id)
+	 {
+	 	$this->db->where('bookID',$id);
+	 	$query = $this->db->get('lib_bookinfo');
+	 	//print_r($query);
+	 	//$row = $query->result_array();
+	 	//print_r($row);
+	 	foreach($query->result_array() as $row)
+	 	{
+	 		//print_r($row);
+	 	}
+	 	//echo $row['storge'];
+	 	return $row['storge'];
+	 }
 		  
  }
 ?>

@@ -12,12 +12,12 @@
 	  <div class="list-div " id="listDiv" style="margin-bottom:20px;">
 		<table cellpadding="3" cellspacing="0" id="listTable" >
 		  <tbody>        
-		  <?php  foreach ($readers as $value){ ?>
+		 <?php  foreach ($readers as $value){ ?>
 		  <tr class="x-grid3-row "  >
 			<td><div class="x-grid3-cell-inner "><?php echo $value['id'] ?></div></td>
 			<td ><div class="x-grid3-cell-inner "><?php echo $value['name'] ?></div></td>
 			<td><div class="x-grid3-cell-inner "><?php echo $value['Email'] ?></div></td>
-			<td ><div class="x-grid3-cell-inner "><?php echo $value['birthday'] ?></div></td>
+			<td><div class="x-grid3-cell-inner "><?php echo $value['BooksInBorrow'] ?></div></td>
 			<td ><div class="x-grid3-cell-inner "><?php echo $value['CreateDate'] ?></div></td>
 			<td ><div class="x-grid3-cell-inner ">ÔÝÎÞ	</div></td>
 			<td ><div class="x-grid3-cell-inner ">ÔÝÎÞ  </div></td>

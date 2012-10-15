@@ -117,8 +117,17 @@
 		<br/>
 
 		<label for="text">Text(拖动右下角来改变大小)</label>
-		<textarea name="text"></textarea><br/>
-
+		
+		
+		<div class="x-form-item" >
+		  <label  style="width: 75px;color:dimgray;" class="x-form-item-label">详细描述:</label><br/>
+		  <div   style="padding-left: 80px;">
+	      <?php echo $fckeditor;  ?>
+		  </div>
+		  <div class="x-form-clear-left"></div>
+	    </div>
+		
+		
 		<input class="btn btn-success" type=submit name="AdminLogin" value="Create news item"/>
 	
 	 </form>

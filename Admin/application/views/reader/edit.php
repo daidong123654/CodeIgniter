@@ -152,7 +152,7 @@ $(document).ready(function() {
     <div class="x-form-item" >
       <label  style="width: 75px;color:dimgray;" class="x-form-item-label">E-MAIL:</label>
       <div class="x-form-element"  style="padding-left: 80px;">
-        <input style="width: 222px;" class="x-form-text x-form-field x-form-bg-invalid" size="20"  name="Email" id="Email" type="text" value="<?php echo $editing['Email']?>" ">
+        <input style="width: 222px;" class="x-form-text x-form-field x-form-bg-invalid x-form-required" size="20"  name="Email" id="Email" type="text" value="<?php echo $editing['Email']?>" ">
       </div>
       <div class="x-form-clear-left"></div>
     </div>
@@ -171,10 +171,93 @@ $(document).ready(function() {
     <div class="x-form-item" >
       <label  style="width: 75px;color:dimgray;" class="x-form-item-label">密码:</label>
       <div class="x-form-element"  style="padding-left: 80px;">
-        <input style="width: 222px;" class="x-form-text x-form-field x-form-bg-invalid" size="20" id="password" name="password"  type="password" value="" >
+        <input style="width: 222px;" class="x-form-text x-form-field x-form-bg-invalid x-form-required" size="20" id="password" name="password"  type="password" value="" >
       </div>
       <div class="x-form-clear-left"></div>
     </div>
+	
+	<div class="x-form-item" >
+	  <label  style="width: 75px;color:dimgray;" class="x-form-item-label">生日:</label>
+	  <div class="x-form-element"  style="padding-left: 80px;">
+	  <input name="birthday" id="birthday" type="text"  size="12" value='<?php echo $editing['birthday']?>'  class="x-form-text x-form-field " readonly="readonly" />
+	  <input name="selbtn" type="button"  id="selbtn" onclick="return showCalendar('birthday', '%Y-%m-%d', false, false, 'selbtn');" value="选择" class="button"   />
+	  </div>
+	  <div class="x-form-clear-left"></div>
+    </div>
+	
+	<div class="x-form-item" >
+		<label  style="width: 75px;color:dimgray;" class="x-form-item-label">证件类型:</label>
+		<div class="x-form-element"  style="padding-left: 80px;">
+		  <select name='papertype'  style="width:230px;height:22px;">
+		  <option value='身份证'  <?php if($editing['papertype'] == '身份证') echo "selected=selected";?> >身份证</option>		  
+		  <option value='医保证'  <?php if($editing['papertype'] == '医保证') echo "selected=selected";?>>医保证</option>		  
+		  <option value='学生证'  <?php if($editing['papertype'] == '学生证') echo "selected=selected";?>>学生证</option>		  
+		  </select>
+		</div>
+		<div class="x-form-clear-left"></div>
+	</div>
+	
+	<div class="x-form-item" >
+		<label  style="width: 75px;color:dimgray;" class="x-form-item-label">读者类型:</label>
+		<div class="x-form-element"  style="padding-left: 80px;">
+		  <select name='typeid'  style="width:230px;height:22px;">
+		  <option value='0'  >老师</option>
+		  <option value='1'  selected='selected'>学生</option>
+		  
+		  </select>
+		</div>
+		<div class="x-form-clear-left"></div>
+	</div>
+	
+	
+	<div class="x-form-item" >
+      <label  style="width: 75px;color:dimgray;" class="x-form-item-label">证件号码:</label>
+      <div class="x-form-element"  style="padding-left: 80px;">
+      <input style="width: 222px;" class="x-form-text x-form-field x-form-required" size="20"  name="papercode" id="papercode" type="text" value="<?php echo $editing['papercode']?>" >
+      </div>
+      <div class="x-form-clear-left"></div>
+    </div>
+	
+	<div class="x-form-item" >
+      <label  style="width: 75px;color:dimgray;" class="x-form-item-label">读者证号:</label>
+      <div class="x-form-element"  style="padding-left: 80px;">
+      <input style="width: 222px;" class="x-form-text x-form-field " size="20"  name="barcode" id="barcode" type="text" value="<?php echo $editing['barcode']?>" >
+      </div>
+      <div class="x-form-clear-left"></div>
+    </div>
+	
+	<div class="x-form-item" >
+      <label  style="width: 75px;color:dimgray;" class="x-form-item-label">年龄(不用填了):</label>
+      <div class="x-form-element"  style="padding-left: 80px;">
+      <input style="width: 222px;" class="x-form-text x-form-field" size="20"  name="age" id="age" type="text" value="<?php echo $editing['age']?>" >
+      </div>
+      <div class="x-form-clear-left"></div>
+    </div>
+	
+	<div class="x-form-item" >
+      <label  style="width: 75px;color:dimgray;" class="x-form-item-label">电话:</label>
+      <div class="x-form-element"  style="padding-left: 80px;">
+      <input style="width: 222px;" class="x-form-text x-form-field" size="20"  name="teltphone" id="teltphone" type="text" value="<?php echo $editing['telephone']?>" >
+      </div>
+      <div class="x-form-clear-left"></div>
+    </div>
+	
+	<div class="x-form-item" >
+		<label  style="width: 75px;color:dimgray;" class="x-form-item-label">关键字:</label>
+		<div class="x-form-element"  style="padding-left: 80px;">
+		  <textarea rows="4" cols="80" name="remark" class="x-form-field"  ><?php echo $editing['remark']?></textarea>
+		  </div>
+		<div class="x-form-clear-left"></div>
+	</div>
+	
+	<div class="x-form-item" >
+      <label  style="width: 75px;color:dimgray;" class="x-form-item-label">积分:</label>
+      <div class="x-form-element"  style="padding-left: 80px;">
+      <input style="width: 222px;" class="x-form-text x-form-field" size="20"  name="credit" id="credit" type="text" value="<?php echo $editing['credit']?>" >
+      </div>
+      <div class="x-form-clear-left"></div>
+    </div>
+	
  
     </form>
     </div>

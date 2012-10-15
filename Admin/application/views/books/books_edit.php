@@ -191,14 +191,16 @@ $(document).ready(function() {
 		  <div class="x-form-clear-left"></div>
 		  </div>
 		  
+		  
 		  <div class="x-form-item" >
 		  <label  style="width: 75px;color:dimgray;" class="x-form-item-label">出版日期:</label>
 		  <div class="x-form-element"  style="padding-left: 80px;">
-		  <input style="width: 222px;" class="x-form-text x-form-field " size="20"  name="publishtime" id="publishtime" type="text" value="<?php echo $editing['publishtime']?>" >
+		  <input name="publishtime" id="publishtime" type="text"  size="12" value='<?php echo $editing['publishtime']?>'  class="x-form-text x-form-field " readonly="readonly" />
+		  <input name="selbtn" type="button"  id="selbtn" onclick="return showCalendar('publishtime', '%Y-%m-%d', false, false, 'selbtn');" value="选择" class="button"   />
 		  </div>
 		  <div class="x-form-clear-left"></div>
-	      </div>
-		  
+		</div>
+			  
 		  <div class="x-form-item" >
 		  <label  style="width: 75px;color:dimgray;" class="x-form-item-label">库存:</label>
 		  <div class="x-form-element"  style="padding-left: 80px;">

@@ -74,7 +74,7 @@ function delete_a(id)
 <tr>
 <!--<button class="btn btn-large btn-block" type="button" >-->
 	<th>用户名</th>
-	<th>角色</th>
+	<th>角色/id</th>
 	<th>Email地址</th>
 	<th>加入时间</th>
 	<th>最后登录时间</th>
@@ -93,8 +93,7 @@ function delete_a(id)
 				if(!$value['role_name'])
 					echo "非法管理员";
 				else
-					echo $value['role_name'].'  ';
-					echo $value['role_id'];
+					echo $value['role_name'].'/'.$value['role_id'];
 				?>
 			</td>
 				
@@ -109,6 +108,7 @@ function delete_a(id)
 			  <a href='#' onclick="delete_a('<?php echo $value['mID'];?>')" style="text-decoration:none" alt='删除' title='删除'>
 			 <img src="<?php echo base_url()?>images/icon_drop.gif" border="0" width="16" height="16">
 			 </a>
+			 
 			</div></td>		
 		</tr>	
 	<!--</button>-->

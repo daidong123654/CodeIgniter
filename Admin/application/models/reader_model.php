@@ -74,7 +74,7 @@
  	  	$datetime = date('Y-m-d H:i:s');
  	  	
  	  	$this->db->set('name',$this->name);
- 	  	$this->db->set('Email',$this->email);
+ 	  	$this->db->set('Email',$this->Email);
  	  	$this->db->set('password',md5($this->password));
  	  	$this->db->set('typeid',$this->typeid);
  	  	$this->db->set('papertype',$this->papertype);
@@ -192,7 +192,7 @@
  	    	$datetime = date('Y-m-d H:i:s');
  	  	
 	 	  	$this->db->set('name',$this->name);
-	 	  	$this->db->set('Email',$this->email);
+	 	  	$this->db->set('Email',$this->Email);
 	 	  	if($this->password)
 	 	  	{
 	 	  		$this->db->set('password',md5($this->password));
@@ -322,7 +322,26 @@
  	         	}
  	         	return $rows;
  	         }*/
- 	
+ 		
+ 		//-----------------------------------------------
+ 		/**
+ 		 * 找到读者借书书目
+ 		 * 
+ 		 */
+ 		 function find_borrow_books($id)
+ 		 {
+ 		 	$query = $this->db->get_where('lib_reader',array('id'=>$id));
+ 		 	$row = array();
+ 		 	foreach($query->result_array() as $row) 
+ 		 	{
+ 		 		//print_r($row);
+ 		 	}
+ 		 	if(!empty($row))
+ 		 	//echo $row['BooksInBorrow'];
+ 		 		return $row['BooksInBorrow'];
+ 		 	else 		 	
+ 		 		return null;
+ 		 }
  }
 ?>
 

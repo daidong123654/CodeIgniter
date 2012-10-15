@@ -42,10 +42,19 @@ class news extends CI_Controller
   
 		$this->form_validation->set_rules('title', 'Title', 'required');  //设置必须是填写的
 		$this->form_validation->set_rules('text', 'text', 'required');	  //设置必须是填写的
-  
+  		
+  		
 		if ($this->form_validation->run() === FALSE)
-		{			 
-			$this->load->view('news/create');
+		{	
+		// 创建 编辑器 
+		   $this->fckeditor->BasePath = base_url().'fck/';
+	       $this->fckeditor->InstanceName = 'text';   
+	       $this->fckeditor->Height = '400';
+		   $this->fckeditor->ToolbarSet = 'Normal';
+		   $this->fckeditor->Value = $data['editing']['text'];
+	       $data['fckeditor']=$this->fckeditor->CreateHtml(); 
+  		 
+			$this->load->view('news/create',$data);
     
 		}
 		else

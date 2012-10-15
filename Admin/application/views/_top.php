@@ -61,12 +61,17 @@ $(document).ready(function() {
 	<ul>
 	<li><a class="tab-front"href="<?php echo site_url('books')?>" target="main-frame" onclick="changeMenu('<?php echo site_url('frameset/menu/books');?>')">图书管理</a></li>
 	
-	<li><a href="<?php echo site_url('reader')?>" target="main-frame" onclick="changeMenu('<?php echo site_url('frameset/menu/reader');?>')">读者管理</a></li>	
-	<li><a href="<?php echo site_url('news')?>" target="main-frame" onclick="changeMenu('<?php echo site_url('frameset/menu/news');?>')">新闻管理</a></li>
-	<li><a href="<?php echo site_url('message')?>" target="main-frame" onclick="changeMenu('<?php echo site_url('frameset/menu/message');?>')">留言管理</a></li>
+	<li><a href="<?php echo site_url('reader')?>" target="main-frame" onclick="changeMenu('<?php echo site_url('frameset/menu/reader');?>')">读者管理</a></li>
+	
 	<li><a href="<?php echo site_url('borrow')?>" target="main-frame" onclick="changeMenu('<?php echo site_url('frameset/menu/borrow');?>')">借阅管理</a></li>
+	
 	<li><a href="<?php echo site_url('admin_user')?>" target="main-frame" onclick="changeMenu('<?php echo site_url('frameset/menu/admin');?>')">管理员</a></li>
+	
 	<li><a href="<?php echo site_url('system')?>" target="main-frame" onclick="changeMenu('<?php echo site_url('frameset/menu/system');?>')">系统管理</a></li>
+		
+	<li><a href="<?php echo site_url('news')?>" target="main-frame" onclick="changeMenu('<?php echo site_url('frameset/menu/news');?>')">新闻管理</a></li>
+	
+	<li><a href="<?php echo site_url('message')?>" target="main-frame" onclick="changeMenu('<?php echo site_url('frameset/menu/message');?>')">留言管理</a></li>
 	</ul>
 </div>
 
